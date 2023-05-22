@@ -1,0 +1,155 @@
+.topbar-container {
+  height: 50px;
+  width: 100%;
+  background-color: #1877f2;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar-left {
+  flex: 3;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 50px;
+}
+
+.topbar-center {
+  flex: 6;
+}
+
+.topbar-right {
+  flex: 3;
+  display: flex;
+  gap: 25px;
+  margin-right: 50px;
+}
+
+.topbar-logo {
+  cursor: pointer;
+}
+
+.search-bar {
+  background-color: white;
+  width: 80%;
+  border: none;
+  border-radius: 15px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+}
+
+.search-bar input {
+  border: none;
+  width: 80%;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.search-bar .search-bar-icon {
+  margin-left: 10px;
+}
+
+.topbar-links {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.topbar-link a {
+  color: white;
+}
+
+.person-icon {
+  height: 25px;
+  width: 25px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.chat-icon,
+.bell-icon {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.person,
+.chat,
+.bell {
+  display: flex;
+  position: relative;
+}
+
+.person-icon-notification-number {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -0.1rem;
+  left: 0.9rem;
+}
+
+.chat-icon-notification-number {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -0.25rem;
+  left: 0.9rem;
+}
+
+.bell-icon-notification-number {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -0.25rem;
+  left: 0.9rem;
+}
+
+.profile-pic img {
+  height: 33px;
+  width: 33px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20px;
+}
