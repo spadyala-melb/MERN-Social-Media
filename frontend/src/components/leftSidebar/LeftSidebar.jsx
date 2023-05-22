@@ -9,6 +9,8 @@ import {
 } from "react-icons/bs";
 import { RiVideoFill } from "react-icons/ri";
 import { FaGraduationCap } from "react-icons/fa";
+import { Users } from "../../dummyData";
+import Friend from "../friend/Friend";
 
 const LeftSidebar = () => {
   return (
@@ -58,78 +60,9 @@ const LeftSidebar = () => {
         </div>
         <div className="friendsList">
           <ul>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
-            <li className="friends-list-item">
-              <span className="friend-name">
-                <img src="./assets/person/1.jpeg" alt="" />
-              </span>
-              <span>
-                <p className="frined-name">friend name</p>
-              </span>
-            </li>
+            {Users.map((user) => (
+              <Friend user={user} key={user.id} />
+            ))}
           </ul>
         </div>
       </div>

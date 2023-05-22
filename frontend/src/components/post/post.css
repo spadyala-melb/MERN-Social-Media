@@ -1,0 +1,79 @@
+.post-container {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+}
+
+.post-user-pic img {
+  height: 33px;
+  width: 33px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-details-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-username {
+  font-weight: 500;
+}
+
+.post-timestamp {
+  font-size: 0.8rem;
+}
+
+.post-content img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.three-dots-icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.post-content {
+  margin-block: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-text {
+  padding-block: 10px;
+}
+
+.comments-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comments-section-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comments-section-left img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.no-of-comments span {
+  border-bottom: 2px dotted grey;
+}

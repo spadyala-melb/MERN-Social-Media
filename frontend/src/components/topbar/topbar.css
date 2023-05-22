@@ -1,14 +1,3 @@
-.topbar {
-  height: 50px;
-  width: 100%;
-  background-color: #1877f2;
-  /* display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 999; */
-}
-
 .topbar-container {
   height: 50px;
   width: 100%;

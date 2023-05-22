@@ -1,5 +1,7 @@
 import React from "react";
 import "./rightSidebar.css";
+import Online from "../online/Online";
+import { Users } from "../../dummyData";
 
 const RightSidebar = () => {
   return (
@@ -21,33 +23,9 @@ const RightSidebar = () => {
               <strong>Online friends</strong>
             </p>
           </div>
-          <div className="online-friends">
-            <div className="friend-pic">
-              <img src="./assets/person/1.jpeg" alt="" />
-              <div className="friend-green-mark"></div>
-            </div>
-            <span>
-              <strong>Siva Padyala</strong>
-            </span>
-          </div>
-          <div className="online-friends">
-            <div className="friend-pic">
-              <img src="./assets/person/1.jpeg" alt="" />
-              <div className="friend-green-mark"></div>
-            </div>
-            <span>
-              <strong>Siva Padyala</strong>
-            </span>
-          </div>
-          <div className="online-friends">
-            <div className="friend-pic">
-              <img src="./assets/person/1.jpeg" alt="" />
-              <div className="friend-green-mark"></div>
-            </div>
-            <span>
-              <strong>Siva Padyala</strong>
-            </span>
-          </div>
+          {Users.map((user) => (
+            <Online user={user} key={user.id} />
+          ))}
         </div>
       </div>
     </>

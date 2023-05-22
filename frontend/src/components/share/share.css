@@ -1,0 +1,90 @@
+.share-container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.75);
+}
+
+.share-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 10px;
+}
+
+.user-post-msg {
+  width: 100%;
+}
+
+.user-post-msg input {
+  border: none;
+  width: 80%;
+  padding: 5px;
+}
+
+.user-post-msg input:focus {
+  outline: none;
+}
+.share-center {
+  margin-block: 20px;
+}
+
+.user-pic img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.share-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+  margin: 10px 10px;
+  padding-block: 10px;
+}
+
+.emotions-icon,
+.location-icon,
+.tag-icon,
+.photo-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.location,
+.photo-video {
+  width: 30px;
+  height: 30px;
+  color: rgb(200, 105, 121);
+}
+
+.location {
+  width: 30px;
+  height: 30px;
+  color: green;
+}
+
+.tag {
+  width: 22px;
+  height: 22px;
+  color: blue;
+}
+
+.emotions {
+  width: 22px;
+  height: 22px;
+  color: orange;
+}
+
+.btn-share {
+  border: none;
+  padding: 7px 15px;
+  border-radius: 5px;
+  background-color: #1877f2;
+  color: white;
+  cursor: pointer;
+}
