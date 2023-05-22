@@ -1,3 +1,14 @@
+.topbar {
+  height: 50px;
+  width: 100%;
+  background-color: #1877f2;
+  /* display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999; */
+}
+
 .topbar-container {
   height: 50px;
   width: 100%;
@@ -7,6 +18,11 @@
   position: sticky;
   top: 0;
   z-index: 999;
+}
+
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .topbar-left {
@@ -30,6 +46,7 @@
 
 .topbar-logo {
   cursor: pointer;
+  letter-spacing: 0.5px;
 }
 
 .search-bar {
@@ -48,6 +65,7 @@
   width: 80%;
   height: 25px;
   margin-left: 10px;
+  letter-spacing: 0.75px;
 }
 
 .search-bar input:focus {
@@ -78,6 +96,7 @@ a {
 
 .topbar-link a {
   color: white;
+  letter-spacing: 0.75px;
 }
 
 .person-icon {
@@ -143,7 +162,7 @@ a {
   justify-content: center;
   align-items: center;
   top: -0.25rem;
-  left: 0.9rem;
+  left: 0.75rem;
 }
 
 .profile-pic img {

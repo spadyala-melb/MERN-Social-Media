@@ -1,0 +1,9 @@
+.home-container {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}

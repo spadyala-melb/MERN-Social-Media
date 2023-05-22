@@ -10,11 +10,11 @@ import "./topbar.css";
 
 const Topbar = () => {
   return (
-    <div>
-      <div className="topbar-container">
+    <div className="topbar">
+      <div className="topbar-container ">
         <div className="topbar-left">
           <div className="topbar-logo">
-            <p>Padyala's Social Media</p>
+            <p className="logo-text">Padyala's Social Media</p>
           </div>
         </div>
         <div className="topbar-center">

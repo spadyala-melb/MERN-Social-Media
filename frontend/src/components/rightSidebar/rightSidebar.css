@@ -1,0 +1,57 @@
+.right-sidebar {
+  flex: 3;
+}
+
+.right-sidebar-wrapper {
+  padding: 20px;
+}
+
+.gift {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gift img {
+  width: 50px;
+  height: 50px;
+}
+
+.ad {
+  margin-block: 25px;
+}
+
+.ad img {
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.online-friends {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-block: 15px;
+}
+
+.online-friends img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-pic {
+  position: relative;
+}
+
+.friend-green-mark {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(98, 200, 98);
+  border: 2px solid white;
+  position: absolute;
+  top: -4px;
+  right: 1px;
+}
