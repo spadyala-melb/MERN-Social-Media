@@ -18,6 +18,6 @@ router.delete("/:id", deletePost);
 // get a post
 router.get("/:id", getPost);
 // get timeline posts
-router.get("/timeline/all", getTimelinePosts);
+router.get("/timeline/:id", getTimelinePosts);
 
 export default router;

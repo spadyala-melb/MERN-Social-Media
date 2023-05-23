@@ -1,10 +1,10 @@
 .topbar-container {
-  height: 50px;
+  height: 55px;
   width: 100%;
   background-color: #1877f2;
   display: flex;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 999;
 }
@@ -12,6 +12,14 @@
 .wrapper {
   max-width: 1500px;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo-text-link {
+  color: white;
 }
 
 .topbar-left {

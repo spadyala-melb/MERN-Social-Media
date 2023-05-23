@@ -7,6 +7,7 @@ import {
   getUser,
   followUser,
   unfollowUser,
+  getAllUsers,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -25,5 +26,7 @@ router.get("/:id", getUser);
 router.put("/:id/follow", followUser);
 //  unfollow a user
 router.put("/:id/unfollow", unfollowUser);
+// get all users
+router.get("/", getAllUsers);
 
 export default router;

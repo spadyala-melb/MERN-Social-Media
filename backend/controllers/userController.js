@@ -143,3 +143,13 @@ export const unfollowUser = async (req, res) => {
   });
   res.status(200).json(currentUser);
 };
+
+// get all users
+export const getAllUsers = async (req, res) => {
+  const users = await User.find();
+
+  if (!users) {
+    return res.status(400).json({ msg: "No users found" });
+  }
+  res.status(200).json(users);
+};

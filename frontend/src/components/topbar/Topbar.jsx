@@ -7,14 +7,16 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import "./topbar.css";
+import { FaUserAlt } from "react-icons/fa";
 
-const Topbar = () => {
+const Topbar = ({ user }) => {
   return (
-    // <div className="topbar">
     <div className="topbar-container ">
       <div className="topbar-left">
         <div className="topbar-logo">
-          <p className="logo-text">Padyala's Social Media</p>
+          <Link to="/" className="logo-text-link">
+            <p className="logo-text">Padyala's Social Media</p>
+          </Link>
         </div>
       </div>
       <div className="topbar-center">
@@ -49,13 +51,16 @@ const Topbar = () => {
           </div>
         </div>
         <div className="profile-pic">
-          <Link to="#">
-            <img src="./assets/person/1.jpeg" alt="" />
+          <Link to="/profile">
+            {user.profilePicture ? (
+              <img src={user.profilePicture} alt="" />
+            ) : (
+              <FaUserAlt />
+            )}
           </Link>
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

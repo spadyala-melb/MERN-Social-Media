@@ -77,3 +77,11 @@
 .no-of-comments span {
   border-bottom: 2px dotted grey;
 }
+
+.empty-avatar {
+  color: gray;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}

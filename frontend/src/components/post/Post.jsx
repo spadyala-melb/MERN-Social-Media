@@ -1,34 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaUserAlt } from "react-icons/fa";
 import "./post.css";
-import { Users } from "../../dummyData";
+import axios from "axios";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(
+        `http://localhost:4000/api/users/${post.userId}`
+      );
+      setUser(response.data);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <>
-      <div className="post-container">
+      <div className="post-container" key={post.id}>
         <div className="post-details">
           <div className="post-details-left">
             <div className="post-user-pic">
-              <img
-                src={
-                  Users.filter((user) => user.id === post.userId)[0]
-                    .profilePicture
-                }
-                alt=""
-              />
+              {user.profilePicture ? (
+                <img src={user.profilePicture} alt="" />
+              ) : (
+                <FaUserAlt className="empty-avatar" />
+              )}
             </div>
-            <div className="post-username">
-              {Users.filter((user) => user.id === post.userId)[0].username}
-            </div>
+            <div className="post-username">{user.username}</div>
             <div className="post-timestamp">{post.date}</div>
           </div>
           <div className="post-details-right">
@@ -40,7 +48,7 @@ const Post = ({ post }) => {
         <div className="post-content">
           <span className="post-text">{post.desc}</span>
           <div className="post-photo">
-            <img src={post.photo} alt="" />
+            <img src={post.img} alt="" />
           </div>
         </div>
         <div className="comments-section">

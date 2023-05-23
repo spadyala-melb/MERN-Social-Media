@@ -1,0 +1,11 @@
+.profile-container {
+  display: flex;
+}
+
+.left-sidebar {
+  flex: 4;
+}
+
+.right-sidebar {
+  flex: 4;
+}

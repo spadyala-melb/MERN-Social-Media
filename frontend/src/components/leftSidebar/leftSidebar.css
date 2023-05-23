@@ -4,9 +4,7 @@
   flex-direction: column;
   gap: 20px;
   overflow-y: scroll;
-  position: sticky;
-  top: 50px;
-  z-index: 900;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {

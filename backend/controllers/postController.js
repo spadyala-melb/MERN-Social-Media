@@ -74,19 +74,15 @@ export const updatePost = async (req, res) => {
 // Timeline posts
 export const getTimelinePosts = async (req, res) => {
   try {
-    const userId = req.body.userId;
-    const currentUser = await User.findById(userId);
-
-    const currentUserPosts = await Post.find({ userId });
+    const { id } = req.params;
+    const currentUser = await User.findById(id);
+    const currentUserPosts = await Post.find({ userId: currentUser._id });
 
     const followingIds = currentUser.followings;
     const followingsPosts = await Post.find({ userId: { $in: followingIds } });
-
     const posts = currentUserPosts.concat(followingsPosts);
-
     return res.status(200).json(posts);
   } catch (error) {
-    console.error(error);
     return res.status(400).json({ error: error.message });
   }
 };
