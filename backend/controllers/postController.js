@@ -76,13 +76,47 @@ export const getTimelinePosts = async (req, res) => {
   try {
     const { id } = req.params;
     const currentUser = await User.findById(id);
-    const currentUserPosts = await Post.find({ userId: currentUser._id });
+    const currentUserPosts = await Post.find({ userId: currentUser._id }).sort({
+      createdAt: -1,
+    });
 
     const followingIds = currentUser.followings;
-    const followingsPosts = await Post.find({ userId: { $in: followingIds } });
+    const followingsPosts = await Post.find({
+      userId: { $in: followingIds },
+    }).sort({ createdAt: -1 });
     const posts = currentUserPosts.concat(followingsPosts);
     return res.status(200).json(posts);
   } catch (error) {
     return res.status(400).json({ error: error.message });
+  }
+};
+
+// Like or dislike a post
+
+export const likePost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ msg: "No such post" });
+    }
+    // get the post owner id
+    const { userId: postOwnerId } = await Post.findById(id);
+
+    if (req.body.userId === postOwnerId) {
+      return res.status(403).json({ error: "You cannot like your own posts" });
+    }
+
+    const post = await Post.findByIdAndUpdate(id, {
+      $push: { likes: req.body.userId },
+    });
+    if (!post) {
+      return res.status(400).json({ msg: "No such post" });
+    }
+
+    return res.status(200).json(post);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "An error occurred" });
   }
 };

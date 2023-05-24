@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./rightSidebar.css";
 import axios from "axios";
 import Online from "../online/Online";
+import { API_BASE_URL } from "../../utils/constants";
+import useUserContext from "../../hooks/useUserContext";
 
 const RightSidebar = () => {
   const [users, setUsers] = useState([]);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await axios.get("http://localhost:4000/api/users");
-      const onlineUsers = response.data.filter(
-        (user) => user.isOnline === true
-      );
-      setUsers(onlineUsers);
+      const response = await axios.get(`${API_BASE_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setUsers(response.data);
     };
     fetchUsers();
   }, []);

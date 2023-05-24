@@ -11,13 +11,20 @@ import { RiVideoFill } from "react-icons/ri";
 import { FaGraduationCap } from "react-icons/fa";
 import Friend from "../friend/Friend";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/constants";
+import useUserContext from "../../hooks/useUserContext";
 
 const LeftSidebar = () => {
   const [users, setUsers] = useState([]);
+  const { user } = useUserContext();
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await axios.get("http://localhost:4000/api/users");
+      const response = await axios.get(`${API_BASE_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       setUsers(response.data);
     };
     fetchUsers();

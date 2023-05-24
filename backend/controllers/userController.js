@@ -17,15 +17,17 @@ export const registerUser = async (req, res) => {
 
   const hashedPassword = await getHashed(password);
   const user = await User.create({ username, email, password: hashedPassword });
+  console.log("user: ", user);
 
-  res.status(200).json(user);
+  const token = createToken(user._id);
+  res.status(200).json({ _id: user._id, token });
 };
 
 // Login
 export const loginUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ email });
   if (!user) {
     return res.status(400).json({ msg: "Incorrect username" });
   }
@@ -34,7 +36,8 @@ export const loginUser = async (req, res) => {
     return res.status(400).json({ msg: "Incorrect password" });
   }
 
-  res.status(200).json({ msg: "User login successful" });
+  const token = createToken(user._id);
+  res.status(200).json({ _id: user._id, token });
 };
 
 // update

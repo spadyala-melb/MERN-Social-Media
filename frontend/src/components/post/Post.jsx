@@ -3,26 +3,31 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import "./post.css";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/constants";
+import useUserContext from "../../hooks/useUserContext";
 
 const Post = ({ post }) => {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [user, setUser] = useState({});
+  const { user } = useUserContext();
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    await axios.post(
+      `${API_BASE_URL}/posts/like/${post._id}`,
+      {
+        userId: user._id, //send the logged in userId here
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get(
-        `http://localhost:4000/api/users/${post.userId}`
-      );
-      setUser(response.data);
-    };
-    fetchUser();
-  }, []);
+  const PF = "http://localhost:4000/images/";
 
   return (
     <>
@@ -48,7 +53,7 @@ const Post = ({ post }) => {
         <div className="post-content">
           <span className="post-text">{post.desc}</span>
           <div className="post-photo">
-            <img src={post.img} alt="" />
+            <img src={PF + post.img} alt={post.img} />
           </div>
         </div>
         <div className="comments-section">
@@ -59,7 +64,9 @@ const Post = ({ post }) => {
             <div className="heart-icon">
               <img src="./assets/heart.png" alt="" onClick={handleLike} />
             </div>
-            <div className="no-of-people-liked">{like} people like it</div>
+            <div className="no-of-people-liked">
+              {post.likes.length} people like it
+            </div>
           </div>
           <div className="comments-section-right">
             <div className="no-of-comments">

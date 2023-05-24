@@ -8,8 +8,11 @@ import {
 } from "react-icons/bs";
 import "./topbar.css";
 import { FaUserAlt } from "react-icons/fa";
+import useUserContext from "../../hooks/useUserContext";
 
-const Topbar = ({ user }) => {
+const Topbar = () => {
+  const { user } = useUserContext();
+
   return (
     <div className="topbar-container ">
       <div className="topbar-left">

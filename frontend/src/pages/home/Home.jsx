@@ -5,23 +5,39 @@ import RightSidebar from "../../components/rightSidebar/RightSidebar";
 import Feed from "../../components/feed/Feed";
 import "./home.css";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/constants";
+import useUserContext from "../../hooks/useUserContext";
 
 const Home = () => {
-  const [user, setUser] = useState({});
+  const { user } = useUserContext();
+  // const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
 
+  // console.log("_id: ", _id);
+  // console.log("token: ", token);
+
+  console.log("userFromContext: ", user);
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get(
-        "http://localhost:4000/api/users/64694ff8c33826d7e12dd47d"
-      );
-      setUser(response.data);
-    };
-    fetchUser();
+    // get user from database
+    // const fetchUser = async () => {
+    //   const response = await axios.get(`${API_BASE_URL}/users/${_id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   });
+    //   setUser(response.data);
+    // };
+    // fetchUser();
 
     const fetchPosts = async () => {
       const response = await axios.get(
-        "http://localhost:4000/api/posts/timeline/64694ff8c33826d7e12dd47d"
+        `${API_BASE_URL}/posts/timeline/${user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       setPosts(response.data);
     };
@@ -29,11 +45,11 @@ const Home = () => {
   }, []);
 
   // console.log("user: ", user);
-  console.log("posts: ", posts);
+  // console.log("posts: ", posts);
 
   return (
     <>
-      <Topbar user={user} />
+      <Topbar />
       <div className="home-container">
         <LeftSidebar />
         <Feed posts={posts} />
