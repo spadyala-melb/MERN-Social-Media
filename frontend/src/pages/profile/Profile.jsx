@@ -2,7 +2,7 @@ import React from "react";
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import LeftSidebar from "../../components/leftSidebar/LeftSidebar";
-import RightSidebar from "../../components/rightSidebar/RightSidebar";
+import ProfileRightSidebar from "../../components/profileRightSidebar/ProfileRightSidebar";
 import Feed from "../../components/feed/Feed";
 
 const Profile = () => {
@@ -10,9 +10,8 @@ const Profile = () => {
     <>
       <Topbar />
       <div className="profile-container">
-        <LeftSidebar className="left-sidebar" />
-        {/* <Feed /> */}
-        <RightSidebar className="right-sidebar" />
+        <LeftSidebar className="profile-left-sidebar" />
+        <ProfileRightSidebar />
       </div>
     </>
   );

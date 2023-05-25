@@ -9,7 +9,7 @@ const Online = ({ user }) => {
         {user.profilePicture ? (
           <img src={user.profilePicture} alt="" />
         ) : (
-          <FaUserAlt className="empty-avatar" />
+          <FaUserAlt className="friend-empty-avatar" />
         )}
         <div className="friend-green-mark"></div>
       </div>

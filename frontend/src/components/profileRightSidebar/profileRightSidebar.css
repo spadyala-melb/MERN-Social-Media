@@ -1,0 +1,99 @@
+.profile-right-sidebar-wrapper {
+  padding-inline: 10px;
+}
+
+.profile-cover-pic img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.profile-picture {
+  position: relative;
+}
+
+.profile-dp img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 500;
+  top: 50%;
+  left: 40%;
+  border: 5px solid white;
+}
+
+.profile-name {
+  margin-top: 125px;
+  text-align: center;
+}
+
+.profile-username {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.profile-tag-line {
+  font-size: 1.1rem;
+  padding: 5px;
+  color: gray;
+}
+
+.profile-right-sidebar-bottom {
+  display: flex;
+}
+
+.profile-right-sidebar-bottom-left {
+  flex: 7.5;
+  margin-top: 25px;
+}
+
+.profile-right-sidebar-bottom-right {
+  flex: 4.5;
+  margin-top: 25px;
+}
+
+.user-information {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-information label {
+  font-weight: 600;
+  color: gray;
+  letter-spacing: 0.5px;
+}
+
+.user-information span {
+  color: gray;
+  letter-spacing: 0.5px;
+}
+
+.user-friends {
+  margin-left: 25px;
+  margin-block: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.user-friend img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.user-post {
+  margin-block: 50px;
+}
+
+.profile-empty-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  color: gray;
+}

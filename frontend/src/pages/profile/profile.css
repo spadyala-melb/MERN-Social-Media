@@ -1,11 +1,12 @@
 .profile-container {
   display: flex;
+  margin-top: 55px;
 }
 
-.left-sidebar {
-  flex: 4;
+.profile-left-sidebar {
+  flex: 2.5;
 }
 
-.right-sidebar {
-  flex: 4;
+.profile-right-sidebar {
+  flex: 9.5;
 }

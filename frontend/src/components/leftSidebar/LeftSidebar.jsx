@@ -13,21 +13,25 @@ import Friend from "../friend/Friend";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
+import { useFriendsContext } from "../../hooks/useFriendsContext";
 
 const LeftSidebar = () => {
-  const [users, setUsers] = useState([]);
+  const [friends, setFriends] = useState([]);
   const { user } = useUserContext();
+  const { dispatch } = useFriendsContext();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchFriends = async () => {
       const response = await axios.get(`${API_BASE_URL}/users`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      setUsers(response.data);
+      setFriends(response.data);
+      dispatch({ type: "SET_FRIENDS", payload: response.data });
+      localStorage.setItem("friends", response.data);
     };
-    fetchUsers();
+    fetchFriends();
   }, []);
 
   return (
@@ -76,8 +80,8 @@ const LeftSidebar = () => {
           <hr />
         </div>
         <div className="friendsList">
-          {users.map((user) => (
-            <Friend key={user._id} user={user} />
+          {friends.map((friend) => (
+            <Friend key={friend._id} friend={friend} />
           ))}
         </div>
       </div>

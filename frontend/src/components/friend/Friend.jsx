@@ -2,18 +2,18 @@ import React from "react";
 import "./friend.css";
 import { FaUserAlt } from "react-icons/fa";
 
-const Friend = ({ user }) => {
+const Friend = ({ friend }) => {
   return (
     <div className="friends-list-item">
       <span className="friend-name">
-        {user.profilePicture ? (
-          <img src={user.profilePicture} alt="" />
+        {friend.profilePicture ? (
+          <img src={friend.profilePicture} alt="" />
         ) : (
-          <FaUserAlt className="empty-avatar" />
+          <FaUserAlt className="friend-empty-avatar" />
         )}
       </span>
       <span>
-        <p className="frined-name">{user.username}</p>
+        <p className="frined-name">{friend.username}</p>
       </span>
     </div>
   );

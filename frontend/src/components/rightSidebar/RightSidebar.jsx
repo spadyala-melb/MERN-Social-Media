@@ -4,22 +4,24 @@ import axios from "axios";
 import Online from "../online/Online";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
+import { useFriendsContext } from "../../hooks/useFriendsContext";
 
 const RightSidebar = () => {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const { user } = useUserContext();
+  const { friends } = useFriendsContext();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await axios.get(`${API_BASE_URL}/users`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      setUsers(response.data);
-    };
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     const response = await axios.get(`${API_BASE_URL}/users`, {
+  //       headers: {
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //     });
+  //     setUsers(response.data);
+  //   };
+  //   fetchUsers();
+  // }, []);
 
   return (
     <>
@@ -40,7 +42,7 @@ const RightSidebar = () => {
               <strong>Online friends</strong>
             </p>
           </div>
-          {users.map((user) => (
+          {friends.map((user) => (
             <Online user={user} key={user._id} />
           ))}
         </div>
