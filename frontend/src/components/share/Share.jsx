@@ -6,22 +6,31 @@ import { BsEmojiSmile } from "react-icons/bs";
 import "./share.css";
 import { API_BASE_URL } from "../../utils/constants";
 import axios from "axios";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import { FaUserAlt } from "react-icons/fa";
+import { usePostsContext } from "../../hooks/usePostsContext";
 
 const Share = () => {
   const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
   const { user } = useUserContext();
   const desc = useRef();
+  const { dispatch } = usePostsContext();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
   const handleUpload = async () => {
+    if (!desc.current.value) {
+      return setError("Provide the descripiton for the Post");
+    }
+
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
     };
+
     if (file) {
       const data = new FormData();
       const fileName = Date.now() + file.name;
@@ -38,14 +47,17 @@ const Share = () => {
         });
       } catch (err) {}
     }
+
     try {
-      await axios.post(`${API_BASE_URL}/posts`, newPost, {
+      const response = await axios.post(`${API_BASE_URL}/posts`, newPost, {
         headers: {
           Authorization: `Bearer ${user.token}`,
-          // "Content-Type": "multipart/form-data",
         },
       });
-      window.location.reload();
+      // window.location.reload();
+      dispatch({ type: "ADD_POST", payload: response.data });
+      desc.current.value = null;
+      setFile(null);
     } catch (err) {}
   };
 
@@ -54,12 +66,19 @@ const Share = () => {
       <div className="share-container">
         <div className="share-top">
           <div className="user-pic">
-            <img src="./assets/person/1.jpeg" alt="" />
+            {user.profilePicture ? (
+              <img src={user.profilePicture} alt="" />
+            ) : (
+              <FaUserAlt />
+            )}
           </div>
           <div className="user-post-msg">
             <input type="text" ref={desc} placeholder="What's in your mind?" />
           </div>
         </div>
+
+        {error && <div className="error-desc"> {error}</div>}
+
         <div className="share-center">
           <hr />
         </div>

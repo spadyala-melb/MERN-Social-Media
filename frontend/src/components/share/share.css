@@ -90,3 +90,8 @@
   color: white;
   cursor: pointer;
 }
+
+.error-desc {
+  color: red;
+  text-align: center;
+}

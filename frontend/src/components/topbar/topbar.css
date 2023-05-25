@@ -32,6 +32,32 @@ a {
 
 .topbar-center {
   flex: 6;
+  display: flex;
+  align-items: center;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchbar-input {
+  position: relative;
+}
+
+.search-close-btn {
+  position: absolute;
+  right: 15px;
+  z-index: 1500;
+  cursor: pointer;
+}
+
+.search-close-btn-icon {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  height: 13px;
+  width: 13px;
 }
 
 .topbar-right {
@@ -44,6 +70,10 @@ a {
 .topbar-logo {
   cursor: pointer;
   letter-spacing: 0.5px;
+}
+
+.search-form {
+  width: 100%;
 }
 
 .search-bar {
@@ -60,7 +90,7 @@ a {
 .search-bar input {
   border: none;
   width: 80%;
-  height: 25px;
+  height: 30px;
   margin-left: 10px;
   letter-spacing: 0.75px;
 }
@@ -84,7 +114,7 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-left: 10px;
+  margin-left: 50px;
 }
 
 a {
@@ -168,4 +198,16 @@ a {
   border-radius: 50%;
   object-fit: cover;
   margin-left: 20px;
+}
+
+.logout-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-link a {
+  color: white;
+  letter-spacing: 0.75px;
 }

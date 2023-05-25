@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { FaUserAlt } from "react-icons/fa";
 import "./post.css";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import { usePostsContext } from "../../hooks/usePostsContext";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { user } = useUserContext();
+  const { dispatch } = usePostsContext();
+
+  // console.log("posts in Post.jsx: ", posts);
+
+  const handleDelete = async () => {
+    await axios.delete(
+      `${API_BASE_URL}/posts/${post._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      },
+      {
+        userId: user._id, //send the logged in userId here
+      }
+    );
+    dispatch({ type: "DELETE_POST", payload: post._id });
+  };
 
   const handleLike = async () => {
-    await axios.post(
+    await axios.put(
       `${API_BASE_URL}/posts/like/${post._id}`,
       {
         userId: user._id, //send the logged in userId here
@@ -23,6 +42,10 @@ const Post = ({ post }) => {
         },
       }
     );
+    dispatch({
+      type: "UPDATE_POST",
+      payload: { post: post, userId: user._id },
+    });
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -46,14 +69,17 @@ const Post = ({ post }) => {
           </div>
           <div className="post-details-right">
             <div>
-              <BsThreeDotsVertical className="three-dots-icon" />
+              <RiCloseCircleFill
+                className="three-dots-icon"
+                onClick={handleDelete}
+              />
             </div>
           </div>
         </div>
         <div className="post-content">
           <span className="post-text">{post.desc}</span>
           <div className="post-photo">
-            <img src={PF + post.img} alt={post.img} />
+            {post.img && <img src={PF + post?.img} alt="" />}
           </div>
         </div>
         <div className="comments-section">
@@ -64,9 +90,7 @@ const Post = ({ post }) => {
             <div className="heart-icon">
               <img src="./assets/heart.png" alt="" onClick={handleLike} />
             </div>
-            <div className="no-of-people-liked">
-              {post.likes.length} people like it
-            </div>
+            <div className="no-of-people-liked">{like} people like it</div>
           </div>
           <div className="comments-section-right">
             <div className="no-of-comments">

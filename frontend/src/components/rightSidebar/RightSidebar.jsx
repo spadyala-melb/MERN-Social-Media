@@ -3,7 +3,7 @@ import "./rightSidebar.css";
 import axios from "axios";
 import Online from "../online/Online";
 import { API_BASE_URL } from "../../utils/constants";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
 
 const RightSidebar = () => {
   const [users, setUsers] = useState([]);

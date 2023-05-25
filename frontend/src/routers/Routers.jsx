@@ -5,10 +5,11 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import NotFound from "../pages/notfound/NotFound";
 import Profile from "../pages/profile/Profile";
-import useUserContext from "../hooks/useUserContext";
+import { useUserContext } from "../hooks/useUserContext";
 
 const Routers = () => {
   const { user } = useUserContext();
+
   return (
     <Routes>
       <Route

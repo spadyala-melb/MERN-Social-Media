@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
+import "./home.css";
 import Topbar from "../../components/topbar/Topbar";
 import LeftSidebar from "../../components/leftSidebar/LeftSidebar";
 import RightSidebar from "../../components/rightSidebar/RightSidebar";
 import Feed from "../../components/feed/Feed";
-import "./home.css";
-import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import { usePostsContext } from "../../hooks/usePostsContext";
 
 const Home = () => {
   const { user } = useUserContext();
-  // const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
+  const { posts, dispatch } = usePostsContext();
 
-  // console.log("_id: ", _id);
-  // console.log("token: ", token);
-
-  console.log("userFromContext: ", user);
+  console.log("posts: ", posts);
 
   useEffect(() => {
-    // get user from database
-    // const fetchUser = async () => {
-    //   const response = await axios.get(`${API_BASE_URL}/users/${_id}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   setUser(response.data);
-    // };
-    // fetchUser();
-
     const fetchPosts = async () => {
       const response = await axios.get(
         `${API_BASE_URL}/posts/timeline/${user._id}`,
@@ -39,20 +25,17 @@ const Home = () => {
           },
         }
       );
-      setPosts(response.data);
+      dispatch({ type: "SET_POSTS", payload: response.data });
     };
     fetchPosts();
-  }, []);
-
-  // console.log("user: ", user);
-  // console.log("posts: ", posts);
+  }, [user, dispatch]);
 
   return (
     <>
       <Topbar />
       <div className="home-container">
         <LeftSidebar />
-        <Feed posts={posts} />
+        <Feed />
         <RightSidebar />
       </div>
     </>

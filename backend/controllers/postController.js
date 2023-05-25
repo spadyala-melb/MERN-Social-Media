@@ -103,14 +103,12 @@ export const likePost = async (req, res) => {
     // get the post owner id
     const { userId: postOwnerId } = await Post.findById(id);
 
-    if (req.body.userId === postOwnerId) {
-      return res.status(403).json({ error: "You cannot like your own posts" });
-    }
-
     const post = await Post.findByIdAndUpdate(id, {
       $push: { likes: req.body.userId },
     });
+
     if (!post) {
+      console.log("No such post");
       return res.status(400).json({ msg: "No such post" });
     }
 

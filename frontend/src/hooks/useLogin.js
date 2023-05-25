@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useUserContext from "./useUserContext";
+import { useUserContext } from "./useUserContext";
 import axios from "axios";
 import { API_BASE_URL } from "../utils/constants";
 
@@ -16,8 +16,21 @@ export const useLogin = () => {
         email,
         password,
       });
-      dispatch({ type: "LOGIN", payload: response.data });
-      localStorage.setItem("user", JSON.stringify(response.data));
+
+      const resp = await axios.get(
+        `${API_BASE_URL}/users/${response.data._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+          },
+        }
+      );
+      resp.data.token = response.data.token;
+      delete resp.data.password;
+      // console.log("resp.data ", resp.data);
+      dispatch({ type: "LOGIN", payload: resp.data });
+      localStorage.setItem("user", JSON.stringify(resp.data));
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { RiCloseCircleLine } from "react-icons/ri";
 import {
   BsPersonFill,
   BsChatLeftTextFill,
@@ -8,10 +10,46 @@ import {
 } from "react-icons/bs";
 import "./topbar.css";
 import { FaUserAlt } from "react-icons/fa";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
+import { usePostsContext } from "../../hooks/usePostsContext";
+import { useLogout } from "../../hooks/useLogout";
+import { API_BASE_URL } from "../../utils/constants";
 
 const Topbar = () => {
   const { user } = useUserContext();
+  const { posts, dispatch } = usePostsContext();
+  const { logout } = useLogout();
+  const search = useRef();
+
+  // console.log("user in topbar: ", user);
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    const newPosts = posts.filter((post) =>
+      post.desc.includes(search.current.value)
+    );
+
+    dispatch({ type: "SET_POSTS", payload: newPosts });
+  };
+
+  const handleClearSearch = async () => {
+    search.current.value = null;
+
+    const response = await axios.get(
+      `${API_BASE_URL}/posts/timeline/${user._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    dispatch({ type: "SET_POSTS", payload: response.data });
+  };
 
   return (
     <div className="topbar-container ">
@@ -24,21 +62,26 @@ const Topbar = () => {
       </div>
       <div className="topbar-center">
         <div className="search-bar">
-          <span className="search-bar-icon">
-            <BsSearch />
-          </span>
-          <input type="text" placeholder="Search for person, photo or videos" />
+          <form className="search-form" onSubmit={handleSearch}>
+            <span className="search-bar-icon">
+              <BsSearch />
+            </span>
+            <input
+              type="text"
+              ref={search}
+              placeholder="Search for person, photo or videos"
+              className="searchbar-input"
+            />
+          </form>
+          <div className="search-close-btn">
+            <RiCloseCircleLine
+              className="search-close-btn-icon"
+              onClick={handleClearSearch}
+            />
+          </div>
         </div>
       </div>
       <div className="topbar-right">
-        <div className="topbar-links">
-          <div className="topbar-link">
-            <Link to="/">Homepage</Link>
-          </div>
-          <div className="topbar-link">
-            <Link to="/">Timeline</Link>
-          </div>
-        </div>
         <div className="topbar-icons">
           <div className="person">
             <BsPersonFill className="person-icon" />
@@ -60,6 +103,11 @@ const Topbar = () => {
             ) : (
               <FaUserAlt />
             )}
+          </Link>
+        </div>
+        <div className="logout-link">
+          <Link to="/login" onClick={handleLogout}>
+            Logout
           </Link>
         </div>
       </div>

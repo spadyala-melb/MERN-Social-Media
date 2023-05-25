@@ -12,7 +12,7 @@ import { FaGraduationCap } from "react-icons/fa";
 import Friend from "../friend/Friend";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
-import useUserContext from "../../hooks/useUserContext";
+import { useUserContext } from "../../hooks/useUserContext";
 
 const LeftSidebar = () => {
   const [users, setUsers] = useState([]);
