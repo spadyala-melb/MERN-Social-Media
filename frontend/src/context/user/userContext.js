@@ -1,29 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
+import { userReducer } from "./userReducer";
 
 const initialContext = { user: null };
 
 export const UserContext = createContext();
-
-export const userReducer = (state, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return {
-        user: action.payload,
-      };
-    case "REGISTER":
-      return {
-        user: action.payload,
-      };
-    case "LOGOUT":
-      return {
-        user: null,
-      };
-    default:
-      return {
-        state,
-      };
-  }
-};
 
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialContext);

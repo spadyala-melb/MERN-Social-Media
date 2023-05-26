@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { RiCloseCircleLine } from "react-icons/ri";
@@ -47,7 +47,6 @@ const Topbar = () => {
         },
       }
     );
-    // dispatch({ type: "SET_POSTS", payload: response.data });
     dispatch({ type: "CLEAR_SEARCHED_POSTS" });
     localStorage.setItem("posts", JSON.stringify(response.data));
   };

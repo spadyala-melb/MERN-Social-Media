@@ -1,4 +1,4 @@
-.chat {
+.messenger-chat {
   display: flex;
   margin-top: 55px;
   height: calc(100vh - 55px);

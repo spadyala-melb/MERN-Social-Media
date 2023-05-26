@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FriendsContext } from "../context/friendsContext";
+import { FriendsContext } from "../context/friends/friendsContext";
 
 export const useFriendsContext = () => {
   const context = useContext(FriendsContext);

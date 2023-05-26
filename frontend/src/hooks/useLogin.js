@@ -4,7 +4,6 @@ import axios from "axios";
 import { API_BASE_URL } from "../utils/constants";
 
 export const useLogin = () => {
-  // const {user} = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { dispatch } = useUserContext();

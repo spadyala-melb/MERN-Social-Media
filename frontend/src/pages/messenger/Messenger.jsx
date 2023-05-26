@@ -13,7 +13,7 @@ const Messenger = () => {
   return (
     <>
       <Topbar />
-      <div className="chat">
+      <div className="messenger-chat">
         <div className="chatMenu">
           <div className="chatmenu-search-input">
             <input type="text" placeholder="Search for friends..." />

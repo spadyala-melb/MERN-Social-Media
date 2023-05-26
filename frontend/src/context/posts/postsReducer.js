@@ -1,25 +1,27 @@
-import { createContext, useEffect, useReducer } from "react";
-
-const initialContext = { posts: [], isSearchActive: false, foundPosts: [] };
-
-export const PostsContext = createContext();
+import {
+  SET_POSTS,
+  ADD_POST,
+  DELETE_POST,
+  UPDATE_POST,
+  SEARCHED_POSTS,
+  CLEAR_SEARCHED_POSTS,
+} from "./postsActions";
 
 export const postsReducer = (state, action) => {
   switch (action.type) {
-    case "SET_POSTS":
+    case SET_POSTS:
       return {
         posts: action.payload,
       };
-    case "ADD_POST":
+    case ADD_POST:
       return {
         posts: [action.payload, ...state.posts],
       };
-    case "DELETE_POST":
+    case DELETE_POST:
       return {
         posts: state.posts.filter((post) => post._id !== action.payload),
       };
-    case "UPDATE_POST":
-      // console.log("action.payload: ", action.payload.post._id);
+    case UPDATE_POST:
       let newPosts = state.posts.map((post) => {
         if (post._id === action.payload.post._id) {
           return {
@@ -34,13 +36,13 @@ export const postsReducer = (state, action) => {
       return {
         posts: newPosts,
       };
-    case "SEARCHED_POSTS":
+    case SEARCHED_POSTS:
       return {
         posts: [...state.posts],
         isSearchActive: true,
         foundPosts: action.payload,
       };
-    case "CLEAR_SEARCHED_POSTS":
+    case CLEAR_SEARCHED_POSTS:
       return {
         posts: [...state.posts],
         isSearchActive: false,
@@ -51,22 +53,4 @@ export const postsReducer = (state, action) => {
         state,
       };
   }
-};
-
-export const PostsContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(postsReducer, initialContext);
-
-  //   useEffect(() => {
-  //     const user = JSON.parse(localStorage.getItem("user"));
-
-  //     if (user) {
-  //       dispatch({ type: "LOGIN", payload: user });
-  //     }
-  //   }, []);
-
-  return (
-    <PostsContext.Provider value={{ ...state, dispatch }}>
-      {children}
-    </PostsContext.Provider>
-  );
 };
