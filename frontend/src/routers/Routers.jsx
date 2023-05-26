@@ -5,6 +5,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import NotFound from "../pages/notfound/NotFound";
 import Profile from "../pages/profile/Profile";
+import Messenger from "../pages/messenger/Messenger";
 import { useUserContext } from "../hooks/useUserContext";
 
 const Routers = () => {
@@ -27,6 +28,7 @@ const Routers = () => {
         path="/register"
         element={!user ? <Register /> : <Navigate to="/" />}
       />
+      <Route exact path="/messenger" element={<Messenger />} />
       <Route exact path="/profile" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

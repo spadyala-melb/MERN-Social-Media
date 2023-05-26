@@ -92,7 +92,6 @@ export const getTimelinePosts = async (req, res) => {
 };
 
 // Like or dislike a post
-
 export const likePost = async (req, res) => {
   const { id } = req.params;
 

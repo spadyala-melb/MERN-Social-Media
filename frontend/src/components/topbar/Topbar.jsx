@@ -21,7 +21,7 @@ const Topbar = () => {
   const { logout } = useLogout();
   const search = useRef();
 
-  // console.log("user in topbar: ", user);
+  console.log("user in topbar: ", user);
 
   const handleLogout = () => {
     logout();
@@ -35,6 +35,7 @@ const Topbar = () => {
     );
 
     dispatch({ type: "SET_POSTS", payload: newPosts });
+    localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
   const handleClearSearch = async () => {
@@ -49,6 +50,7 @@ const Topbar = () => {
       }
     );
     dispatch({ type: "SET_POSTS", payload: response.data });
+    localStorage.setItem("posts", JSON.stringify(response.data));
   };
 
   return (
@@ -63,8 +65,8 @@ const Topbar = () => {
       <div className="topbar-center">
         <div className="search-bar">
           <form className="search-form" onSubmit={handleSearch}>
-            <span className="search-bar-icon">
-              <BsSearch />
+            <span>
+              <BsSearch className="search-bar-icon" />
             </span>
             <input
               type="text"
@@ -109,6 +111,7 @@ const Topbar = () => {
           <Link to="/login" onClick={handleLogout}>
             Logout
           </Link>
+          <Link to="/messenger">Messenger</Link>
         </div>
       </div>
     </div>

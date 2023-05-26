@@ -11,7 +11,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const user = localStorage.getItem("user");
     await login(email.current.value, password.current.value);
   };
 

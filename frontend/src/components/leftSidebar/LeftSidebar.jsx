@@ -29,7 +29,7 @@ const LeftSidebar = () => {
       });
       setFriends(response.data);
       dispatch({ type: "SET_FRIENDS", payload: response.data });
-      localStorage.setItem("friends", response.data);
+      localStorage.setItem("friends", JSON.stringify(response.data));
     };
     fetchFriends();
   }, []);

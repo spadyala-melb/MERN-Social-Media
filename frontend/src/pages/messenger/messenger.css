@@ -1,0 +1,35 @@
+.chat {
+  display: flex;
+  margin-top: 55px;
+  height: calc(100vh - 55px);
+}
+
+.chatMenu {
+  flex: 3;
+  border: 1px solid red;
+  padding: 20px;
+}
+
+.chatBox {
+  flex: 6;
+  border: 1px solid blue;
+}
+
+.chatOnlineFriends {
+  flex: 3;
+  border: 1px solid green;
+}
+
+.chatmenu-search-input input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid gray;
+  height: 35px;
+  padding: 5px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.chatmenu-search-input input:focus {
+  outline: none;
+}
