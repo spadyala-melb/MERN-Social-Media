@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 
-const initialContext = { posts: [] };
+const initialContext = { posts: [], isSearchActive: false, foundPosts: [] };
 
 export const PostsContext = createContext();
 
@@ -33,6 +33,18 @@ export const postsReducer = (state, action) => {
       console.log("newposts: ", newPosts);
       return {
         posts: newPosts,
+      };
+    case "SEARCHED_POSTS":
+      return {
+        posts: [...state.posts],
+        isSearchActive: true,
+        foundPosts: action.payload,
+      };
+    case "CLEAR_SEARCHED_POSTS":
+      return {
+        posts: [...state.posts],
+        isSearchActive: false,
+        foundPosts: [],
       };
     default:
       return {

@@ -33,9 +33,7 @@ const Topbar = () => {
     const newPosts = posts.filter((post) =>
       post.desc.includes(search.current.value)
     );
-
-    dispatch({ type: "SET_POSTS", payload: newPosts });
-    localStorage.setItem("posts", JSON.stringify(newPosts));
+    dispatch({ type: "SEARCHED_POSTS", payload: newPosts });
   };
 
   const handleClearSearch = async () => {
@@ -49,7 +47,8 @@ const Topbar = () => {
         },
       }
     );
-    dispatch({ type: "SET_POSTS", payload: response.data });
+    // dispatch({ type: "SET_POSTS", payload: response.data });
+    dispatch({ type: "CLEAR_SEARCHED_POSTS" });
     localStorage.setItem("posts", JSON.stringify(response.data));
   };
 
