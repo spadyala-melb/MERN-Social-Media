@@ -6,6 +6,7 @@ import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
 import { usePostsContext } from "../../hooks/usePostsContext";
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
@@ -58,11 +59,13 @@ const Post = ({ post }) => {
         <div className="post-details">
           <div className="post-details-left">
             <div className="post-user-pic">
-              {user.profilePicture ? (
-                <img src={user.profilePicture} alt="" />
-              ) : (
-                <FaUserAlt className="empty-avatar" />
-              )}
+              <Link to="/profile">
+                {user.profilePicture ? (
+                  <img src={user.profilePicture} alt="" />
+                ) : (
+                  <FaUserAlt />
+                )}
+              </Link>
             </div>
             <div className="post-username">{user.username}</div>
             <div className="post-timestamp">{post.date}</div>

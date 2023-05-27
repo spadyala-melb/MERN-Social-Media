@@ -13,7 +13,7 @@ const Friend = ({ friend }) => {
         )}
       </span>
       <span>
-        <p className="frined-name">{friend.username}</p>
+        <p className="friend-name">{friend.username}</p>
       </span>
     </div>
   );

@@ -13,9 +13,7 @@ const Online = ({ user }) => {
         )}
         <div className="friend-green-mark"></div>
       </div>
-      <span>
-        <strong>{user.username}</strong>
-      </span>
+      <span className="friend-name">{user.username}</span>
     </div>
   );
 };

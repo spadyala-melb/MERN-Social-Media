@@ -69,7 +69,7 @@ const Topbar = () => {
             <input
               type="text"
               ref={search}
-              placeholder="Search for person, photo or videos"
+              placeholder="Search Facebook"
               className="searchbar-input"
             />
           </form>

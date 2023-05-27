@@ -1,10 +1,14 @@
-.left-sidebar-container {
+.left-sidebar {
   flex: 2.5;
+  height: calc(100vh - 55px);
+  overflow-y: scroll;
+  padding-inline: 20px;
+}
+
+.left-sidebar-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  overflow-y: scroll;
-  height: 100vh;
+  padding-top: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -13,15 +17,17 @@
 
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1;
+  /* background-color: white; */
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(218, 217, 217);
+  /* background-color: white; */
 }
 
-.left-sidebar-wrapper {
+/* .left-sidebar-wrapper {
   padding: 20px;
-}
+} */
 
 .wrapper {
   max-width: 1500px;
@@ -53,6 +59,20 @@
 .rss-feed {
   display: flex;
   align-items: center;
+  padding: 15px 10px;
+  border-radius: 5px;
+}
+
+.videos:hover,
+.groups:hover,
+.bookmarks:hover,
+.questions:hover,
+.jobs:hover,
+.events:hover,
+.chats:hover,
+.courses:hover,
+.rss-feed:hover {
+  background-color: rgb(247, 244, 244);
 }
 
 .left-sidebar-container span {
@@ -69,8 +89,15 @@ ul {
   cursor: pointer;
   font-weight: 500;
   border-radius: 5px;
+  margin-block: 15px;
+  letter-spacing: 0.5px;
+}
+
+.btn-showmore:hover {
+  background-color: rgb(207, 204, 204);
 }
 
 .leftsidebar-hr {
   margin-top: 10px;
+  margin-bottom: 15px;
 }

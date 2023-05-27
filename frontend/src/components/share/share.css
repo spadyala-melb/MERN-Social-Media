@@ -13,6 +13,10 @@
   margin: 10px 10px;
 }
 
+.photo-icon label {
+  cursor: pointer;
+}
+
 .user-post-msg {
   width: 100%;
 }
@@ -22,6 +26,7 @@
   width: 80%;
   padding: 5px;
   font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
 
 .user-post-msg input:focus {

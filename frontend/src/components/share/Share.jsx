@@ -9,6 +9,7 @@ import axios from "axios";
 import { useUserContext } from "../../hooks/useUserContext";
 import { FaUserAlt } from "react-icons/fa";
 import { usePostsContext } from "../../hooks/usePostsContext";
+import { Link } from "react-router-dom";
 
 const Share = () => {
   const [file, setFile] = useState(null);
@@ -66,14 +67,20 @@ const Share = () => {
       <div className="share-container">
         <div className="share-top">
           <div className="user-pic">
-            {user.profilePicture ? (
-              <img src={user.profilePicture} alt="" />
-            ) : (
-              <FaUserAlt />
-            )}
+            <Link to="/profile">
+              {user.profilePicture ? (
+                <img src={user.profilePicture} alt="" />
+              ) : (
+                <FaUserAlt />
+              )}
+            </Link>
           </div>
           <div className="user-post-msg">
-            <input type="text" ref={desc} placeholder="What's in your mind?" />
+            <input
+              type="text"
+              ref={desc}
+              placeholder={`What's in your mind, ${user.username}?`}
+            />
           </div>
         </div>
 
@@ -95,9 +102,9 @@ const Share = () => {
               onChange={handleFileChange}
             />
           </div>
-          <div className="tag-icon">
+          {/* <div className="tag-icon">
             <ImPriceTag className="tag" /> <span>Tag</span>
-          </div>
+          </div> */}
           <div className="location-icon">
             <MdLocationPin className="location" /> <span>Location</span>
           </div>
