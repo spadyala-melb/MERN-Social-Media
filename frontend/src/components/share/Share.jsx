@@ -79,7 +79,7 @@ const Share = () => {
             <input
               type="text"
               ref={desc}
-              placeholder={`What's in your mind, ${user.username}?`}
+              placeholder={`What's on your mind, ${user.username}?`}
             />
           </div>
         </div>

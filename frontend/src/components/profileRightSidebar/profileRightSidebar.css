@@ -1,11 +1,19 @@
 .profile-right-sidebar-wrapper {
   padding-inline: 10px;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.profile-ight-sidebar {
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .profile-cover-pic img {
   width: 100%;
   max-height: 500px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .profile-picture {
@@ -96,4 +104,11 @@
   height: 100px;
   border-radius: 10px;
   color: gray;
+}
+
+.user-friends-text {
+  font-weight: 600;
+  margin-left: 25px;
+  margin-top: 100px;
+  padding-block: 15px;
 }

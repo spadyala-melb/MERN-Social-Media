@@ -1,7 +1,9 @@
 .home-container {
   display: flex;
   /* margin-top: 55px; */
-  height: calc(100vh - 55px);
+  /* height: calc(100vh - 55px); */
+  height: 100vh;
+  background-color: #f0f2f5;
 }
 
 .wrapper {

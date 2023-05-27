@@ -60,6 +60,7 @@ const ProfileRightSidebar = () => {
                   <label>Relationship: </label> <span>Married</span>
                 </div>
               </div>
+              <div className="user-friends-text">User Friends</div>
               <div className="user-friends">
                 {friends.map((friend) => (
                   <div className="user-friend">

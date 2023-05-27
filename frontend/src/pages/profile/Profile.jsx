@@ -10,7 +10,7 @@ const Profile = () => {
     <>
       <Topbar />
       <div className="profile-container">
-        <LeftSidebar className="profile-left-sidebar" />
+        {/* <LeftSidebar className="profile-left-sidebar" /> */}
         <ProfileRightSidebar />
       </div>
     </>

@@ -8,7 +8,8 @@
 }
 
 .online-friends:hover {
-  background-color: rgb(247, 244, 244);
+  /* background-color: rgb(247, 244, 244); */
+  background-color: #dcdddf;
 }
 
 .online-friends img {
