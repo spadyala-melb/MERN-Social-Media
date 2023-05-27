@@ -26,6 +26,7 @@ const RightSidebar = () => {
   return (
     <>
       <div className="right-sidebar">
+        <div className="navbar-space"></div>
         <div className="right-sidebar-container right-sidebar-wrapper ">
           <div className="gift">
             <img src="./assets/gift.png" alt="" />

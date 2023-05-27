@@ -37,6 +37,7 @@ const LeftSidebar = () => {
   return (
     <>
       <div className="left-sidebar-container left-sidebar-wrapper">
+        <div className="navbar-space"></div>
         <div className="rss-feed">
           <MdRssFeed className="rss-feed-icon" />
           <span>Feed</span>

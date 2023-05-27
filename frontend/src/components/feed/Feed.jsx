@@ -14,6 +14,7 @@ const Feed = () => {
   return (
     <>
       <div className="feed">
+        <div className="navbar-space"></div>
         <div className="feed-container">
           <Share />
           {currentPosts.map((post) => (

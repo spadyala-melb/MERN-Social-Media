@@ -5,26 +5,33 @@ import { useUserContext } from "../../hooks/useUserContext";
 import { useFriendsContext } from "../../hooks/useFriendsContext";
 import Friend from "../../components/friend/Friend";
 import Online from "../../components/online/Online";
+import Message from "../../components/message/Message";
 
 const Messenger = () => {
   const { user } = useUserContext();
   const { friends } = useFriendsContext();
-
+  const isMessageOwn = true;
   return (
     <>
       <Topbar />
       <div className="messenger-chat">
-        <div className="chatMenu">
-          <div className="chatmenu-search-input">
+        <div className="conversations">
+          <div className="conversations-search-input">
             <input type="text" placeholder="Search for friends..." />
           </div>
-          <div className="friendsList ">
+          <div className="conversationsList">
             {friends.map((friend) => (
-              <Friend key={friend._id} friend={friend} />
+              <div className="conversation-item" key={friend._id}>
+                <Friend key={friend._id} friend={friend} />
+              </div>
             ))}
           </div>
         </div>
-        <div className="chatBox">Chatbox</div>
+        <div className="chatBox">
+          <Message isMessageOwn={isMessageOwn} />
+          <Message isMessageOwn={isMessageOwn} />
+          <Message isMessageOwn={isMessageOwn} />
+        </div>
         <div className="chatOnlineFriends">
           {friends.map((user) => (
             <Online user={user} key={user._id} />

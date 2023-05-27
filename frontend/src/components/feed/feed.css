@@ -1,5 +1,7 @@
 .feed {
   flex: 6;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .feed-container {
@@ -7,4 +9,8 @@
   display: flex;
   flex-direction: column;
   gap: 35px;
+}
+
+.navbar-space {
+  height: 55px;
 }

@@ -1,5 +1,6 @@
 .right-sidebar {
   flex: 3.5;
+  height: calc(100vh-55px);
 }
 
 .right-sidebar-wrapper {
