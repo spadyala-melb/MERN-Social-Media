@@ -78,6 +78,11 @@
   border-radius: 5px;
   background-color: #1775ee;
   cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.btn-login:hover {
+  background-color: #0d5abf;
 }
 
 .btn {

@@ -15,7 +15,9 @@ const Messenger = () => {
     <>
       <Topbar />
       <div className="messenger-chat">
+        <div className="navbar-space"></div>
         <div className="conversations">
+          <div className="navbar-space"></div>
           <div className="conversations-search-input">
             <input type="text" placeholder="Search for friends..." />
           </div>
@@ -28,11 +30,37 @@ const Messenger = () => {
           </div>
         </div>
         <div className="chatBox">
-          <Message isMessageOwn={isMessageOwn} />
-          <Message isMessageOwn={isMessageOwn} />
-          <Message isMessageOwn={isMessageOwn} />
+          <div className="message-container">
+            <div className="navbar-space"></div>
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+            <Message isMessageOwn={false} />
+            <Message isMessageOwn={true} />
+          </div>
+          <div className="message-submit-section">
+            <textarea
+              className="message-textarea"
+              placeholder="Write something..."
+              // cols="100"
+              // rows="8"
+            ></textarea>
+            <button className="btn-send">Send</button>
+          </div>
         </div>
         <div className="chatOnlineFriends">
+          <div className="navbar-space"></div>
           {friends.map((user) => (
             <Online user={user} key={user._id} />
           ))}

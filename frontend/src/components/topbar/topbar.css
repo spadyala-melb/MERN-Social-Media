@@ -242,12 +242,12 @@ a {
 }
 
 .profile-section-user-hidden {
-  padding: 10px 10px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   gap: 25px;
   cursor: pointer;
-  min-height: 40px;
+  min-height: 50px;
 }
 
 .profile-section-user-hidden:hover,
@@ -257,8 +257,8 @@ a {
 }
 
 .logout-section-hidden {
-  padding: 20px 10px;
-  min-height: 40px;
+  padding: 10px 10px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

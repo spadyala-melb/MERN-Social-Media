@@ -158,3 +158,10 @@ a {
 .showmore-btn span {
   font-size: 0.95rem;
 }
+
+.shortcuts {
+  font-weight: 500;
+  padding: 20px 10px;
+  color: gray;
+  letter-spacing: 0.5px;
+}

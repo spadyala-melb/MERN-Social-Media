@@ -7,6 +7,7 @@ import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
 import { usePostsContext } from "../../hooks/usePostsContext";
 import { Link } from "react-router-dom";
+import TimeAgo from "timeago-react";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
@@ -55,22 +56,24 @@ const Post = ({ post }) => {
   const PF = "http://localhost:4000/images/";
 
   useEffect(() => {
-    const postImgFile = post.img;
-    const videoFileFromats = [
-      "mp4",
-      "mp3",
-      "mkv",
-      "mov",
-      "avi",
-      "wmv",
-      "flv",
-      "mpeg",
-    ];
-    const fileNameSplitStr = postImgFile.split(".");
-    const fileExtension = fileNameSplitStr[1];
-    const isVideo = videoFileFromats.includes(fileExtension);
-    if (isVideo) {
-      setIsVideo(true);
+    if (post.img) {
+      const postImgFile = post.img;
+      const videoFileFromats = [
+        "mp4",
+        "mp3",
+        "mkv",
+        "mov",
+        "avi",
+        "wmv",
+        "flv",
+        "mpeg",
+      ];
+      const fileNameSplitStr = postImgFile.split(".");
+      const fileExtension = fileNameSplitStr[1];
+      const isVideo = videoFileFromats.includes(fileExtension);
+      if (isVideo) {
+        setIsVideo(true);
+      }
     }
   }, []);
 
@@ -89,7 +92,9 @@ const Post = ({ post }) => {
               </Link>
             </div>
             <div className="post-username">{user.username}</div>
-            <div className="post-timestamp">{post.date}</div>
+            <div className="post-timestamp">
+              <TimeAgo datetime={post.createdAt} />
+            </div>
           </div>
           <div className="post-details-right">
             <div>
@@ -110,6 +115,9 @@ const Post = ({ post }) => {
           <div className="post-photo">
             {post.img && <img src={PF + post?.img} alt="" />}
           </div>
+          {post?.feelings && (
+            <div className="post-feelings">{post.feelings}</div>
+          )}
         </div>
         <div className="comments-section">
           <div className="comments-section-left">

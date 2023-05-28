@@ -21,6 +21,12 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    location: {
+      type: Object,
+    },
+    feelings: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

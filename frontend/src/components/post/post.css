@@ -34,6 +34,10 @@
   font-size: 0.8rem;
 }
 
+.post-photo {
+  width: 100%;
+}
+
 .post-content img {
   width: 100%;
   max-height: 500px;
@@ -58,6 +62,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .post-text {
@@ -92,4 +98,18 @@
   width: 42px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.post-feelings {
+  width: 100px;
+  height: 100px;
+  font-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.emotions-icon-label {
+  cursor: pointer;
 }

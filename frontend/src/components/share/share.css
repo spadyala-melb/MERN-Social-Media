@@ -103,3 +103,14 @@
   color: red;
   text-align: center;
 }
+
+.emoji-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 20px;
+}
+
+.hide-emoji-picker {
+  display: none;
+}

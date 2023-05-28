@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { ImPriceTag } from "react-icons/im";
 import { MdLocationPin } from "react-icons/md";
@@ -10,16 +10,61 @@ import { useUserContext } from "../../hooks/useUserContext";
 import { FaUserAlt } from "react-icons/fa";
 import { usePostsContext } from "../../hooks/usePostsContext";
 import { Link } from "react-router-dom";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 const Share = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [isFeelingButtonClicked, setIsFeelingButtonClicked] = useState(false);
+  const [hideEmojiWindow, setHideEmojiWindow] = useState(false);
   const { user } = useUserContext();
   const desc = useRef();
   const { dispatch } = usePostsContext();
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setHideEmojiWindow(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const handleEmoji = async (e) => {
+    // console.log(e);
+
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value,
+      feelings: e.native,
+    };
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/posts`, newPost, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      // window.location.reload();
+      dispatch({ type: "ADD_POST", payload: response.data });
+      desc.current.value = null;
+      setFile(null);
+    } catch (err) {}
+
+    setIsFeelingButtonClicked(false);
+  };
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleEmojiSelect = () => {
+    setIsFeelingButtonClicked(true);
   };
 
   const handleUpload = async () => {
@@ -91,7 +136,7 @@ const Share = () => {
         </div>
         <div className="share-bottom">
           <div className="photo-icon">
-            <FaPhotoVideo className="photo-video" />{" "}
+            <FaPhotoVideo className="photo-video" />
             <span>
               <label htmlFor="upload">Photo or Video</label>
             </span>
@@ -102,14 +147,13 @@ const Share = () => {
               onChange={handleFileChange}
             />
           </div>
-          {/* <div className="tag-icon">
-            <ImPriceTag className="tag" /> <span>Tag</span>
-          </div> */}
+
           <div className="location-icon">
             <MdLocationPin className="location" /> <span>Location</span>
           </div>
           <div className="emotions-icon">
-            <BsEmojiSmile className="emotions" /> <span>feelings</span>
+            <BsEmojiSmile className="emotions" onClick={handleEmojiSelect} />
+            <label className="emotions-icon-label">feelings</label>
           </div>
           <div className="share-button">
             <button className="btn-share" onClick={handleUpload}>
@@ -117,6 +161,14 @@ const Share = () => {
             </button>
           </div>
         </div>
+
+        {isFeelingButtonClicked && (
+          <div
+            className={hideEmojiWindow ? "hide-emoji-picker" : "emoji-picker"}
+          >
+            <Picker data={data} onEmojiSelect={handleEmoji} />
+          </div>
+        )}
       </div>
     </>
   );

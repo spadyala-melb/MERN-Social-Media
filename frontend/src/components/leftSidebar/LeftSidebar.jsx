@@ -85,16 +85,11 @@ const LeftSidebar = () => {
           </div>
           <div className="showmore-btn">
             <MdExpandMore className="show-more-btn" /> <span>See More</span>
-            {/* <button className="btn-showmore">              Show More</button> */}
           </div>
           <div className="leftsidebar-hr">
             <hr />
           </div>
-          <div className="friendsList">
-            {friends.map((friend) => (
-              <Friend key={friend._id} friend={friend} />
-            ))}
-          </div>
+          <div className="shortcuts">Your Shortcuts</div>
         </div>
       </div>
     </>

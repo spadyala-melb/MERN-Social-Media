@@ -1,6 +1,5 @@
 .messenger-chat {
   display: flex;
-  margin-top: 55px;
   height: calc(100vh - 55px);
 }
 
@@ -11,17 +10,19 @@
 
 .chatBox {
   flex: 6;
-  /* display: flex;
-  flex-direction: column; */
+  /* margin-block: 20px; */
 }
 
 .chatOnlineFriends {
   flex: 3;
+  padding: 20px;
+  height: 100vh;
 }
 
 .conversations {
   flex: 3;
   padding: 20px;
+  height: 100vh;
 }
 
 .conversations-search-input input {
@@ -38,13 +39,56 @@
 }
 
 .conversation-item img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .conversation-item {
   font-weight: 500;
-  padding-top: 5px;
+  padding-top: 10px;
+}
+
+.message-submit-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.message-container {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  height: calc(100vh - 205px);
+}
+
+.message-textarea {
+  width: 80%;
+  height: 100px;
+  padding: 10px;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+}
+
+.message-textarea:focus {
+  outline: none;
+}
+
+.btn-send {
+  padding: 10px;
+  min-width: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #1775ee;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.btn-send:hover {
+  background-color: #0d5abf;
 }
