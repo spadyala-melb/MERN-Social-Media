@@ -8,6 +8,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
+import conversationRoutes from "./routes/conversationRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -17,8 +19,8 @@ const app = express();
 // middlewares
 app.use(express.json()); //body parser
 app.use(cors()); //cors
-app.use(morgan("common"));
-app.use(helmet());
+app.use(morgan("common")); //middleware for logging
+app.use(helmet()); //security middleware for http headers
 
 // temporary arrangement to fix the cors
 app.use((req, res, next) => {
@@ -58,6 +60,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/conversations", conversationRoutes);
 
 // Database connection
 mongoose
