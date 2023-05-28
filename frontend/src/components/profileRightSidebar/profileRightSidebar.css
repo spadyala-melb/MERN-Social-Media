@@ -4,10 +4,14 @@
   margin: 0 auto;
 }
 
-.profile-ight-sidebar {
-  height: 100vh;
-  overflow-y: scroll;
+.profile-right-sidebar-top {
+  background-color: white;
 }
+
+/* .profile-right-sidebar {
+  height: 200vh;
+  overflow-y: scroll;
+} */
 
 .profile-cover-pic img {
   width: 100%;
@@ -21,19 +25,19 @@
 }
 
 .profile-dp img {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   position: absolute;
   z-index: 500;
-  top: 50%;
-  left: 40%;
+  top: 60%;
+  left: 43%;
   border: 5px solid white;
 }
 
 .profile-name {
-  margin-top: 125px;
+  margin-top: 100px;
   text-align: center;
 }
 
@@ -46,6 +50,7 @@
   font-size: 1.1rem;
   padding: 5px;
   color: gray;
+  padding-bottom: 35px;
 }
 
 .profile-right-sidebar-bottom {
@@ -112,3 +117,8 @@
   margin-top: 100px;
   padding-block: 15px;
 }
+
+/* .friend-name img,
+.profile-empty-avatar {
+  border: 2px solid white;
+} */

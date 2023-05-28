@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import "./leftSidebar.css";
-import { MdRssFeed, MdGroups, MdOutlineWorkOutline } from "react-icons/md";
+import {
+  MdRssFeed,
+  MdGroups,
+  MdOutlineWorkOutline,
+  MdVideoLibrary,
+  MdExpandMore,
+} from "react-icons/md";
 import {
   BsChatLeftTextFill,
   BsFillBookmarksFill,
   BsQuestionCircle,
   BsCalendar2Event,
+  BsMessenger,
 } from "react-icons/bs";
 import { RiVideoFill } from "react-icons/ri";
-import { FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap, FaUserAlt, FaUserFriends } from "react-icons/fa";
 import Friend from "../friend/Friend";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
 import { useFriendsContext } from "../../hooks/useFriendsContext";
+import { Link } from "react-router-dom";
 
 const LeftSidebar = () => {
   const [friends, setFriends] = useState([]);
@@ -40,43 +48,44 @@ const LeftSidebar = () => {
         <div className="navbar-space"></div>
         <div className="left-sidebar-container">
           <div className="rss-feed">
+            <Link to="/profile" className="left-sidebar-profile-link">
+              {user.profilePicture ? (
+                <img
+                  className="left-sidebar-profile-pic"
+                  src={user.profilePicture}
+                  alt=""
+                />
+              ) : (
+                <FaUserAlt className="rss-feed-icon" />
+              )}
+              <span>{user.username}</span>
+            </Link>
+          </div>
+          <div className="rss-feed">
+            <FaUserFriends className="rss-feed-icon" />
+            <span>Friends</span>
+          </div>
+          <div className="rss-feed">
             <MdRssFeed className="rss-feed-icon" />
-            <span>Feed</span>
+            <span>Feeds (Most Recent)</span>
           </div>
-          <div className="chats">
-            <BsChatLeftTextFill className="chats-icon" />
-            <span>Chats</span>
-          </div>
-          <div className="videos">
-            <RiVideoFill className="videos-icon" />
-            <span>Videos</span>
+          <div className="left-sidebar-messenger">
+            <Link className="left-sidebar-messenger-link" to="/messenger">
+              <BsMessenger className="messenger-icon" />
+              <span>Messenger</span>
+            </Link>
           </div>
           <div className="groups">
             <MdGroups className="groups-icon" />
             <span>Groups</span>
           </div>
-          <div className="bookmarks">
-            <BsFillBookmarksFill className="bookmarks-icon" />
-            <span>Bookmarks</span>
-          </div>
-          <div className="questions">
-            <BsQuestionCircle className="questions-icon" />
-            <span>Questions</span>
-          </div>
-          <div className="jobs">
-            <MdOutlineWorkOutline className="jobs-icon" />
-            <span>Jobs</span>
-          </div>
-          <div className="events">
-            <BsCalendar2Event className="events-icon" />
-            <span>Events</span>
-          </div>
-          <div className="courses">
-            <FaGraduationCap className="courses-icon" />
-            <span>Courses</span>
+          <div className="videos">
+            <MdVideoLibrary className="videos-icon" />
+            <span>Videos</span>
           </div>
           <div className="showmore-btn">
-            <button className="btn-showmore">Show More</button>
+            <MdExpandMore className="show-more-btn" /> <span>See More</span>
+            {/* <button className="btn-showmore">              Show More</button> */}
           </div>
           <div className="leftsidebar-hr">
             <hr />

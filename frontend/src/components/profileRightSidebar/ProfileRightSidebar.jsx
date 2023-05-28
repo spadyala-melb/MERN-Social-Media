@@ -21,20 +21,24 @@ const ProfileRightSidebar = () => {
   return (
     <>
       <div className="profile-right-sidebar">
-        <div className="profile-right-sidebar-container profile-right-sidebar-wrapper">
-          <div className="profile-picture">
-            <div className="profile-cover-pic">
-              <img src="/assets/post/3.jpeg" alt="" />
-            </div>
-            <div className="profile-dp">
-              <img src={user.profilePicture} alt="" />
-            </div>
-            <div className="profile-name">
-              <div className="profile-username">{user.username}</div>
-              <div className="profile-tag-line">Hey friends !!</div>
+        <div className="profile-right-sidebar-container">
+          <div className="profile-right-sidebar-top">
+            <div className="profile-right-sidebar-wrapper">
+              <div className="profile-picture">
+                <div className="profile-cover-pic">
+                  <img src="/assets/post/3.jpeg" alt="" />
+                </div>
+                <div className="profile-dp">
+                  <img src={user.profilePicture} alt="" />
+                </div>
+                <div className="profile-name">
+                  <div className="profile-username">{user.username}</div>
+                  <div className="profile-tag-line">Hey friends !!</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="profile-right-sidebar-bottom">
+          <div className="profile-right-sidebar-bottom profile-right-sidebar-wrapper">
             <div className="profile-right-sidebar-bottom-left">
               <div className="share-comp">
                 <Share className="profile-share-component" />

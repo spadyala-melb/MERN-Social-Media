@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { RiCloseCircleLine } from "react-icons/ri";
@@ -20,8 +20,26 @@ const Topbar = () => {
   const { posts, dispatch } = usePostsContext();
   const { logout } = useLogout();
   const search = useRef();
+  const [isLogoutLinkHidden, setIsLogoutLinkHidden] = useState(true);
 
   console.log("user in topbar: ", user);
+
+  const handleClick = () => {
+    setIsLogoutLinkHidden(!isLogoutLinkHidden);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsLogoutLinkHidden(isLogoutLinkHidden);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -97,19 +115,40 @@ const Topbar = () => {
           </div>
         </div>
         <div className="profile-pic">
-          <Link to="/profile">
+          <span className="topbar-profile-pic" onClick={handleClick}>
             {user.profilePicture ? (
               <img src={user.profilePicture} alt="" />
             ) : (
               <FaUserAlt />
             )}
-          </Link>
-        </div>
-        <div className="logout-link">
-          <Link to="/login" onClick={handleLogout}>
-            Logout
-          </Link>
-          <Link to="/messenger">Messenger</Link>
+          </span>
+          <div
+            className={
+              isLogoutLinkHidden ? "hide-logout" : "hidden-topbar-sidebar"
+            }
+          >
+            <div className="hidden-topbar-sidebar-container">
+              <div className="profile-section-hidden">
+                <Link className="profile-section-user-hidden" to="/profile">
+                  {user.profilePicture ? (
+                    <img src={user.profilePicture} alt="" />
+                  ) : (
+                    <FaUserAlt />
+                  )}
+                  <span>{user.username}</span>
+                </Link>
+              </div>
+              <div className="logout-section-hidden">
+                <Link
+                  className="logout-section-link-hidden"
+                  to="/login"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

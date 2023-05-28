@@ -39,24 +39,27 @@
 .events-icon,
 .jobs-icon,
 .questions-icon,
-.bookmarks-icon,
+.messenger-icon,
 .rss-feed-icon,
 .groups-icon,
 .chats-icon,
 .videos-icon {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   margin-right: 15px;
+  /* color: #1877f2; */
+  color: rgb(43, 131, 226);
 }
 
 .videos,
 .groups,
-.bookmarks,
+.left-sidebar-messenger,
 .questions,
 .jobs,
 .events,
 .chats,
 .courses,
+.showmore-btn,
 .rss-feed {
   display: flex;
   align-items: center;
@@ -72,13 +75,14 @@
 .events:hover,
 .chats:hover,
 .courses:hover,
+.showmore-btn:hover,
 .rss-feed:hover {
   /* background-color: rgb(237, 236, 236); */
   background-color: #dcdddf;
 }
 
 .left-sidebar-container span {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 ul {
@@ -102,4 +106,55 @@ ul {
 .leftsidebar-hr {
   margin-top: 10px;
   margin-bottom: 15px;
+}
+
+.left-sidebar-profile-pic {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.left-sidebar-profile-link {
+  display: flex;
+  align-items: center;
+}
+
+.left-sidebar-profile-link span {
+  font-weight: 500;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.left-sidebar-messenger-link {
+  display: flex;
+  align-items: center;
+}
+
+.showmore-btn {
+  cursor: pointer;
+}
+
+.showmore-btn {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  border-radius: 5px;
+}
+
+.show-more-btn {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  color: black;
+  border-radius: 50%;
+  background-color: rgb(197, 194, 194);
+}
+
+.showmore-btn span {
+  font-size: 0.95rem;
 }

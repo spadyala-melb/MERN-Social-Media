@@ -13,6 +13,7 @@ const Post = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const { user } = useUserContext();
   const { dispatch } = usePostsContext();
+  const [isVideo, setIsVideo] = useState(false);
 
   // console.log("posts in Post.jsx: ", posts);
 
@@ -53,6 +54,26 @@ const Post = ({ post }) => {
 
   const PF = "http://localhost:4000/images/";
 
+  useEffect(() => {
+    const postImgFile = post.img;
+    const videoFileFromats = [
+      "mp4",
+      "mp3",
+      "mkv",
+      "mov",
+      "avi",
+      "wmv",
+      "flv",
+      "mpeg",
+    ];
+    const fileNameSplitStr = postImgFile.split(".");
+    const fileExtension = fileNameSplitStr[1];
+    const isVideo = videoFileFromats.includes(fileExtension);
+    if (isVideo) {
+      setIsVideo(true);
+    }
+  }, []);
+
   return (
     <>
       <div className="post-container" key={post.id}>
@@ -81,6 +102,11 @@ const Post = ({ post }) => {
         </div>
         <div className="post-content">
           <span className="post-text">{post.desc}</span>
+          {isVideo && (
+            <div className="post-photo">
+              {post.img && <video src={PF + post?.img} controls loop />}
+            </div>
+          )}
           <div className="post-photo">
             {post.img && <img src={PF + post?.img} alt="" />}
           </div>
