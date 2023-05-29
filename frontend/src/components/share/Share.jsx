@@ -12,6 +12,7 @@ import { usePostsContext } from "../../hooks/usePostsContext";
 import { Link } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import Location from "../location/Location";
 
 const Share = () => {
   const [file, setFile] = useState(null);
@@ -21,6 +22,8 @@ const Share = () => {
   const { user } = useUserContext();
   const desc = useRef();
   const { dispatch } = usePostsContext();
+  const [currentLocation, setCurrentLocation] = useState({});
+  const [feelings, setFeelings] = useState("");
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -35,14 +38,41 @@ const Share = () => {
     };
   }, []);
 
-  const handleEmoji = async (e) => {
-    // console.log(e);
+  const handleShare = async () => {
+    if (
+      !desc.current.value &&
+      !file &&
+      !feelings &&
+      Object.keys(currentLocation).length === 0
+    ) {
+      return setError("Provide the descripiton for the Post");
+    }
 
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
-      feelings: e.native,
+      location: currentLocation,
+      feelings: feelings,
     };
+
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+
+      try {
+        await axios.post(`${API_BASE_URL}/upload`, data, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } catch (err) {
+        console.log(error);
+      }
+    }
 
     try {
       const response = await axios.post(`${API_BASE_URL}/posts`, newPost, {
@@ -51,11 +81,35 @@ const Share = () => {
         },
       });
       // window.location.reload();
+      console.log("new post: ", response.data);
       dispatch({ type: "ADD_POST", payload: response.data });
       desc.current.value = null;
       setFile(null);
-    } catch (err) {}
+      setFeelings("");
+      setCurrentLocation({});
+      setError(null);
+    } catch (err) {
+      console.log(error);
+    }
+  };
 
+  const handleLocation = async () => {
+    // Use browser's geolocation API to get the current location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setCurrentLocation({ lat: latitude, lng: longitude });
+      },
+      (error) => {
+        console.log("Error getting current location:", error);
+      }
+    );
+  };
+
+  // console.log(location);
+
+  const handleEmoji = async (e) => {
+    setFeelings(e.native);
     setIsFeelingButtonClicked(false);
   };
 
@@ -67,52 +121,52 @@ const Share = () => {
     setIsFeelingButtonClicked(true);
   };
 
-  const handleUpload = async () => {
-    if (!desc.current.value) {
-      return setError("Provide the descripiton for the Post");
-    }
+  // const handleUpload = async () => {
+  //   if (!desc.current.value) {
+  //     return setError("Provide the descripiton for the Post");
+  //   }
 
-    const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
-    };
+  //   const newPost = {
+  //     userId: user._id,
+  //     desc: desc.current.value,
+  //   };
 
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      try {
-        await axios.post(`${API_BASE_URL}/upload`, data, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } catch (err) {}
-    }
+  //   if (file) {
+  //     const data = new FormData();
+  //     const fileName = Date.now() + file.name;
+  //     data.append("name", fileName);
+  //     data.append("file", file);
+  //     newPost.img = fileName;
+  //     // console.log(newPost);
+  //     try {
+  //       await axios.post(`${API_BASE_URL}/upload`, data, {
+  //         headers: {
+  //           Authorization: `Bearer ${user.token}`,
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       });
+  //     } catch (err) {}
+  //   }
 
-    try {
-      const response = await axios.post(`${API_BASE_URL}/posts`, newPost, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      // window.location.reload();
-      dispatch({ type: "ADD_POST", payload: response.data });
-      desc.current.value = null;
-      setFile(null);
-    } catch (err) {}
-  };
+  //   try {
+  //     const response = await axios.post(`${API_BASE_URL}/posts`, newPost, {
+  //       headers: {
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //     });
+  //     // window.location.reload();
+  //     dispatch({ type: "ADD_POST", payload: response.data });
+  //     desc.current.value = null;
+  //     setFile(null);
+  //   } catch (err) {}
+  // };
 
   return (
     <>
       <div className="share-container">
         <div className="share-top">
           <div className="user-pic">
-            <Link to="/profile">
+            <Link to={`/profile/${user._id}`}>
               {user.profilePicture ? (
                 <img src={user.profilePicture} alt="" />
               ) : (
@@ -149,14 +203,17 @@ const Share = () => {
           </div>
 
           <div className="location-icon">
-            <MdLocationPin className="location" /> <span>Location</span>
+            <MdLocationPin className="location" onClick={handleLocation} />
+            <span>Location</span>
           </div>
           <div className="emotions-icon">
             <BsEmojiSmile className="emotions" onClick={handleEmojiSelect} />
             <label className="emotions-icon-label">feelings</label>
           </div>
           <div className="share-button">
-            <button className="btn-share" onClick={handleUpload}>
+            {/* <button className="btn-share" onClick={handleUpload}>
+             */}
+            <button className="btn-share" onClick={handleShare}>
               Share
             </button>
           </div>
@@ -169,6 +226,8 @@ const Share = () => {
             <Picker data={data} onEmojiSelect={handleEmoji} />
           </div>
         )}
+
+        {/* {location && <Location />} */}
       </div>
     </>
   );

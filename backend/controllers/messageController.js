@@ -37,3 +37,22 @@ export const getMessage = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// get all messages in a conversation
+export const getMessages = async (req, res) => {
+  const { conversationId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(conversationId)) {
+    return res.status(400).json({ msg: "No such Message" });
+  }
+
+  try {
+    const messages = await Message.find({ conversationId: conversationId });
+    if (!messages) {
+      return res.status(400).json({ msg: "No Messages found" });
+    }
+    res.status(200).json(messages);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};

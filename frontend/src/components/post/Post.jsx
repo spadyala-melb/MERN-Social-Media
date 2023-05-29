@@ -15,6 +15,7 @@ const Post = ({ post }) => {
   const { user } = useUserContext();
   const { dispatch } = usePostsContext();
   const [isVideo, setIsVideo] = useState(false);
+  const [postOwner, setPostOwner] = useState("");
 
   // console.log("posts in Post.jsx: ", posts);
 
@@ -77,21 +78,36 @@ const Post = ({ post }) => {
     }
   }, []);
 
+  // get post user details
+  useEffect(() => {
+    const fetchPostUserDetails = async () => {
+      const response = await axios.get(`${API_BASE_URL}/users/${post.userId}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setPostOwner(response.data);
+    };
+    fetchPostUserDetails();
+  }, [post, user]);
+
+  // console.log("postOwner: ", postOwner);
+
   return (
     <>
-      <div className="post-container" key={post.id}>
+      <div className="post-container" key={post._id}>
         <div className="post-details">
           <div className="post-details-left">
             <div className="post-user-pic">
-              <Link to="/profile">
-                {user.profilePicture ? (
-                  <img src={user.profilePicture} alt="" />
+              <Link to={`/profile/${postOwner._id}`}>
+                {postOwner.profilePicture ? (
+                  <img src={postOwner.profilePicture} alt="" />
                 ) : (
                   <FaUserAlt />
                 )}
               </Link>
             </div>
-            <div className="post-username">{user.username}</div>
+            <div className="post-username">{postOwner.username}</div>
             <div className="post-timestamp">
               <TimeAgo datetime={post.createdAt} />
             </div>

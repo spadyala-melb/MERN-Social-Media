@@ -48,7 +48,10 @@ const LeftSidebar = () => {
         <div className="navbar-space"></div>
         <div className="left-sidebar-container">
           <div className="rss-feed">
-            <Link to="/profile" className="left-sidebar-profile-link">
+            <Link
+              to={`/profile/${user._id}`}
+              className="left-sidebar-profile-link"
+            >
               {user.profilePicture ? (
                 <img
                   className="left-sidebar-profile-pic"

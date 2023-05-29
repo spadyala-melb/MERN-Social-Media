@@ -22,8 +22,6 @@ const Topbar = () => {
   const search = useRef();
   const [isLogoutLinkHidden, setIsLogoutLinkHidden] = useState(true);
 
-  console.log("user in topbar: ", user);
-
   const handleClick = () => {
     setIsLogoutLinkHidden(!isLogoutLinkHidden);
   };
@@ -129,7 +127,10 @@ const Topbar = () => {
           >
             <div className="hidden-topbar-sidebar-container">
               <div className="profile-section-hidden">
-                <Link className="profile-section-user-hidden" to="/profile">
+                <Link
+                  className="profile-section-user-hidden"
+                  to={`/profile/${user._id}`}
+                >
                   {user.profilePicture ? (
                     <img src={user.profilePicture} alt="" />
                   ) : (

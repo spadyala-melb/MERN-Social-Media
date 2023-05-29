@@ -29,7 +29,7 @@ const Routers = () => {
         element={!user ? <Register /> : <Navigate to="/" />}
       />
       <Route exact path="/messenger" element={<Messenger />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/profile/:id" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

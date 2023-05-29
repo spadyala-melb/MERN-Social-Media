@@ -9,7 +9,7 @@ const Feed = () => {
 
   const currentPosts = isSearchActive ? foundPosts : posts;
 
-  console.log("currentPosts: ", currentPosts);
+  // console.log("currentPosts: ", currentPosts);
 
   return (
     <>

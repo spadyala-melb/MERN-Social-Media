@@ -11,13 +11,29 @@ import Post from "../post/Post";
 import Friend from "../friend/Friend";
 import { FaUserAlt } from "react-icons/fa";
 
-const ProfileRightSidebar = () => {
+const ProfileRightSidebar = ({ profile }) => {
   const [users, setUsers] = useState([]);
   const { user } = useUserContext();
   const { posts } = usePostsContext();
-  const { friends } = useFriendsContext();
 
-  console.log("user: ", user);
+  const friends = profile.followings;
+  // const { friends } = useFriendsContext();
+  // const [friends, setFriends] = useState([]);
+
+  // console.log("user: ", user);
+  // get profile user followings/friends
+  // useEffect(() => {
+  //   const fetchPostUserDetails = async () => {
+  //     const response = await axios.get(`${API_BASE_URL}/users/${profile._id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //     });
+  //     setFriends(response.data.followings);
+  //   };
+  //   fetchPostUserDetails();
+  // }, [profile, user]);
+
   return (
     <>
       <div className="profile-right-sidebar">
@@ -26,13 +42,13 @@ const ProfileRightSidebar = () => {
             <div className="profile-right-sidebar-wrapper">
               <div className="profile-picture">
                 <div className="profile-cover-pic">
-                  <img src="/assets/post/3.jpeg" alt="" />
+                  <img src={profile?.coverPicture} alt="" />
                 </div>
                 <div className="profile-dp">
-                  <img src={user.profilePicture} alt="" />
+                  <img src={profile.profilePicture} alt="" />
                 </div>
                 <div className="profile-name">
-                  <div className="profile-username">{user.username}</div>
+                  <div className="profile-username">{profile.username}</div>
                   <div className="profile-tag-line">Hey friends !!</div>
                 </div>
               </div>

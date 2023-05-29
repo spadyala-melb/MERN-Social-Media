@@ -114,3 +114,11 @@
 .hide-emoji-picker {
   display: none;
 }
+
+.map-container {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
