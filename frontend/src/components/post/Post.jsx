@@ -152,11 +152,11 @@ const Post = ({ post }) => {
             </div>
             <div className="no-of-people-liked">{like} people like it</div>
           </div>
-          <div className="comments-section-right">
+          {/* <div className="comments-section-right">
             <div className="no-of-comments">
               <span>{post.comment} comments</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

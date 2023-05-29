@@ -15,7 +15,7 @@ import { useFriendsContext } from "../../hooks/useFriendsContext";
 import { Link } from "react-router-dom";
 
 const LeftSidebar = () => {
-  const [friends, setFriends] = useState([]);
+  // const [friends, setFriends] = useState([]);
   const { user } = useUserContext();
   const { dispatch } = useFriendsContext();
 
@@ -26,7 +26,7 @@ const LeftSidebar = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      setFriends(response.data);
+      // setFriends(response.data);
       dispatch({ type: "SET_FRIENDS", payload: response.data });
       localStorage.setItem("friends", JSON.stringify(response.data));
     };
@@ -34,9 +34,7 @@ const LeftSidebar = () => {
   }, [user, dispatch]);
 
   const handleFeeds = async () => {
-    console.log("in handle feeds");
     window.location.reload();
-    console.log("finished in handle feeds");
   };
 
   return (
