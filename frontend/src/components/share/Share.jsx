@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { ImPriceTag } from "react-icons/im";
-import { MdLocationPin } from "react-icons/md";
+import { MdLocationPin, MdOutlineCancel } from "react-icons/md";
 import { BsEmojiSmile } from "react-icons/bs";
 import "./share.css";
 import { API_BASE_URL } from "../../utils/constants";
@@ -13,10 +13,12 @@ import { Link } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import Location from "../location/Location";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 const Share = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [isVideo, setIsVideo] = useState(false);
   const [isFeelingButtonClicked, setIsFeelingButtonClicked] = useState(false);
   const [hideEmojiWindow, setHideEmojiWindow] = useState(false);
   const { user } = useUserContext();
@@ -120,6 +122,28 @@ const Share = () => {
   const handleEmojiSelect = () => {
     setIsFeelingButtonClicked(true);
   };
+
+  useEffect(() => {
+    if (file) {
+      const postImgFile = file.name;
+      const videoFileFromats = [
+        "mp4",
+        "mp3",
+        "mkv",
+        "mov",
+        "avi",
+        "wmv",
+        "flv",
+        "mpeg",
+      ];
+      const fileNameSplitStr = postImgFile.split(".");
+      const fileExtension = fileNameSplitStr[1];
+      const isVideo = videoFileFromats.includes(fileExtension);
+      if (isVideo) {
+        setIsVideo(true);
+      }
+    }
+  }, [file, isVideo]);
 
   // const handleUpload = async () => {
   //   if (!desc.current.value) {
@@ -228,6 +252,47 @@ const Share = () => {
         )}
 
         {/* {location && <Location />} */}
+
+        {/* priview photo or image */}
+
+        {file && !isVideo && (
+          <div className="share-img-preview-container">
+            <img className="share-img" src={URL.createObjectURL(file)} alt="" />
+            <MdOutlineCancel
+              className="share-cancel-img"
+              onClick={() => setFile(null)}
+            />
+          </div>
+        )}
+        {/* preview video */}
+
+        {file && isVideo && (
+          <div className="share-img-preview-container">
+            <video
+              className="share-img"
+              src={URL.createObjectURL(file)}
+              alt=""
+            />
+            <MdOutlineCancel
+              className="share-cancel-img"
+              onClick={() => setFile(null)}
+            />
+          </div>
+        )}
+
+        {/* preview Emoji */}
+
+        {feelings && (
+          <div className="share-emoji-preview-container">
+            <div className="share-emoji-pic">{feelings}</div>
+          </div>
+        )}
+
+        {/* preview map */}
+
+        {Object.keys(currentLocation).length > 0 && (
+          <Location currentLocation={currentLocation} />
+        )}
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import { useUserContext } from "../../hooks/useUserContext";
 import { usePostsContext } from "../../hooks/usePostsContext";
 import { Link } from "react-router-dom";
 import TimeAgo from "timeago-react";
+import Location from "../location/Location";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
@@ -123,14 +124,20 @@ const Post = ({ post }) => {
         </div>
         <div className="post-content">
           <span className="post-text">{post.desc}</span>
+          {/* video */}
           {isVideo && (
             <div className="post-photo">
               {post.img && <video src={PF + post?.img} controls loop />}
             </div>
           )}
+          {/* map */}
+          {post.location && <Location currentLocation={post.location} />}
+          {/* photo or image */}
           <div className="post-photo">
             {post.img && <img src={PF + post?.img} alt="" />}
           </div>
+
+          {/* emoji's */}
           {post?.feelings && (
             <div className="post-feelings">{post.feelings}</div>
           )}

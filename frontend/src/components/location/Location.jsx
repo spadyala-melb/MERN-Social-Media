@@ -1,25 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const Location = () => {
-  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
-
-  useEffect(() => {
-    // Use browser's geolocation API to get the current location
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setCurrentLocation({ lat: latitude, lng: longitude });
-      },
-      (error) => {
-        console.log("Error getting current location:", error);
-      }
-    );
-  }, []);
-
-  console.log("currentLocation: ", currentLocation);
-
+const Location = ({ currentLocation }) => {
   return (
     <>
       <MapContainer
