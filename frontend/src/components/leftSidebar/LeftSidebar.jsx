@@ -3,20 +3,11 @@ import "./leftSidebar.css";
 import {
   MdRssFeed,
   MdGroups,
-  MdOutlineWorkOutline,
   MdVideoLibrary,
   MdExpandMore,
 } from "react-icons/md";
-import {
-  BsChatLeftTextFill,
-  BsFillBookmarksFill,
-  BsQuestionCircle,
-  BsCalendar2Event,
-  BsMessenger,
-} from "react-icons/bs";
-import { RiVideoFill } from "react-icons/ri";
-import { FaGraduationCap, FaUserAlt, FaUserFriends } from "react-icons/fa";
-import Friend from "../friend/Friend";
+import { BsMessenger } from "react-icons/bs";
+import { FaUserAlt, FaUserFriends } from "react-icons/fa";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
@@ -40,7 +31,13 @@ const LeftSidebar = () => {
       localStorage.setItem("friends", JSON.stringify(response.data));
     };
     fetchFriends();
-  }, []);
+  }, [user, dispatch]);
+
+  const handleFeeds = async () => {
+    console.log("in handle feeds");
+    window.location.reload();
+    console.log("finished in handle feeds");
+  };
 
   return (
     <>
@@ -68,7 +65,7 @@ const LeftSidebar = () => {
             <FaUserFriends className="rss-feed-icon" />
             <span>Friends</span>
           </div>
-          <div className="rss-feed">
+          <div className="rss-feed" onClick={handleFeeds}>
             <MdRssFeed className="rss-feed-icon" />
             <span>Feeds (Most Recent)</span>
           </div>

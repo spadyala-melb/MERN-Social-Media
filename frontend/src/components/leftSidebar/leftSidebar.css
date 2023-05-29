@@ -35,6 +35,10 @@
   margin: 0 auto;
 }
 
+.rss-feed {
+  cursor: pointer;
+}
+
 .courses-icon,
 .events-icon,
 .jobs-icon,
