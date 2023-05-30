@@ -145,10 +145,10 @@ const Post = ({ post }) => {
         <div className="comments-section">
           <div className="comments-section-left">
             <div className="like-icon">
-              <img src="./assets/like.png" alt="" onClick={handleLike} />
+              <img src="/assets/like.png" alt="" onClick={handleLike} />
             </div>
             <div className="heart-icon">
-              <img src="./assets/heart.png" alt="" onClick={handleLike} />
+              <img src="/assets/heart.png" alt="" onClick={handleLike} />
             </div>
             <div className="no-of-people-liked">{like} people like it</div>
           </div>

@@ -11,11 +11,11 @@ const Messenger = () => {
   const { user } = useUserContext();
   const { friends } = useFriendsContext();
   const isMessageOwn = true;
+
   return (
     <>
       <Topbar />
       <div className="messenger-chat">
-        <div className="navbar-space"></div>
         <div className="conversations">
           <div className="navbar-space"></div>
           <div className="conversations-search-input">
@@ -30,8 +30,8 @@ const Messenger = () => {
           </div>
         </div>
         <div className="chatBox">
+          <div className="navbar-space"></div>
           <div className="message-container">
-            <div className="navbar-space"></div>
             <Message isMessageOwn={false} />
             <Message isMessageOwn={true} />
             <Message isMessageOwn={false} />
@@ -49,14 +49,14 @@ const Messenger = () => {
             <Message isMessageOwn={false} />
             <Message isMessageOwn={true} />
           </div>
-          <div className="message-submit-section">
-            <textarea
-              className="message-textarea"
-              placeholder="Write something..."
-              // cols="100"
-              // rows="8"
-            ></textarea>
-            <button className="btn-send">Send</button>
+          <div>
+            <form className="message-submit-section">
+              <textarea
+                className="message-textarea"
+                placeholder="Write something..."
+              ></textarea>
+              <button className="btn-send">Send</button>
+            </form>
           </div>
         </div>
         <div className="chatOnlineFriends">

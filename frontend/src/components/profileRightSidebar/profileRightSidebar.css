@@ -55,6 +55,7 @@
 
 .profile-right-sidebar-bottom {
   display: flex;
+  gap: 35px;
 }
 
 .profile-right-sidebar-bottom-left {
@@ -108,7 +109,10 @@
   width: 100px;
   height: 100px;
   border-radius: 10px;
-  color: gray;
+  color: rgb(203, 199, 199);
+  background-color: white;
+  /* border-radius: 50%; */
+  padding: 2px;
 }
 
 .user-friends-text {
@@ -117,8 +121,3 @@
   margin-top: 100px;
   padding-block: 15px;
 }
-
-/* .friend-name img,
-.profile-empty-avatar {
-  border: 2px solid white;
-} */

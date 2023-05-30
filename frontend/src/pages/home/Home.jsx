@@ -13,8 +13,6 @@ const Home = () => {
   const { user } = useUserContext();
   const { posts, dispatch } = usePostsContext();
 
-  // console.log("posts: ", posts);
-
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await axios.get(

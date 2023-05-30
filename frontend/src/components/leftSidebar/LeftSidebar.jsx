@@ -12,12 +12,14 @@ import axios from "axios";
 import { API_BASE_URL } from "../../utils/constants";
 import { useUserContext } from "../../hooks/useUserContext";
 import { useFriendsContext } from "../../hooks/useFriendsContext";
+import { usePostsContext } from "../../hooks/usePostsContext";
 import { Link } from "react-router-dom";
 
 const LeftSidebar = () => {
   // const [friends, setFriends] = useState([]);
   const { user } = useUserContext();
   const { dispatch } = useFriendsContext();
+  const { posts, dispatch: postsDispatch } = usePostsContext();
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -34,7 +36,15 @@ const LeftSidebar = () => {
   }, [user, dispatch]);
 
   const handleFeeds = async () => {
-    window.location.reload();
+    const response = await axios.get(
+      `${API_BASE_URL}/posts/timeline/${user._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    postsDispatch({ type: "SET_POSTS", payload: response.data });
   };
 
   return (

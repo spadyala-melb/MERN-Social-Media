@@ -117,3 +117,16 @@ export const likePost = async (req, res) => {
     return res.status(500).json({ error: "An error occurred" });
   }
 };
+
+// get posts of a particular user
+export const getUserPosts = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const posts = await Post.find({ userId: userId }).sort({
+      createdAt: -1,
+    });
+    return res.status(200).json(posts);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};

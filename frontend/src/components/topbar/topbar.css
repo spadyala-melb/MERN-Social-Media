@@ -83,7 +83,7 @@ a {
   width: 80%;
   border: none;
   border-radius: 15px;
-  height: 30px;
+  height: 33px;
   display: flex;
   align-items: center;
   margin-left: 25px;
@@ -92,8 +92,9 @@ a {
 .search-bar input {
   border: none;
   width: 80%;
-  height: 30px;
+  height: 33px;
   margin-left: 10px;
+  font-size: 0.9rem;
   letter-spacing: 0.75px;
 }
 
@@ -262,9 +263,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.logout-section-link-hidden {
 }
 
 a {

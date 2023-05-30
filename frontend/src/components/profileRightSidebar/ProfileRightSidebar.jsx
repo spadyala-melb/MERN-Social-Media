@@ -17,22 +17,10 @@ const ProfileRightSidebar = ({ profile }) => {
   const { posts } = usePostsContext();
 
   const friends = profile.followings;
-  // const { friends } = useFriendsContext();
-  // const [friends, setFriends] = useState([]);
 
-  // console.log("user: ", user);
-  // get profile user followings/friends
-  // useEffect(() => {
-  //   const fetchPostUserDetails = async () => {
-  //     const response = await axios.get(`${API_BASE_URL}/users/${profile._id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${user.token}`,
-  //       },
-  //     });
-  //     setFriends(response.data.followings);
-  //   };
-  //   fetchPostUserDetails();
-  // }, [profile, user]);
+  const profileUserPosts = posts.filter((post) => post.userId === profile._id);
+
+  // console.log("profile: ", profile);
 
   return (
     <>
@@ -60,7 +48,7 @@ const ProfileRightSidebar = ({ profile }) => {
                 <Share className="profile-share-component" />
               </div>
               <div className="user-posts">
-                {posts.map((post) => (
+                {profileUserPosts.map((post) => (
                   <div className="user-post" key={post._id}>
                     <Post key={post._id} post={post} />
                   </div>
@@ -71,13 +59,14 @@ const ProfileRightSidebar = ({ profile }) => {
               <div className="user-information">
                 <h3>User Information</h3>
                 <div>
-                  <label>City: </label> <span>Melbourne</span>
+                  <label>City: </label> <span>{profile?.city}</span>
                 </div>
                 <div>
-                  <label>From: </label> <span>India</span>
+                  <label>From: </label> <span>{profile?.from}</span>
                 </div>
                 <div>
-                  <label>Relationship: </label> <span>Married</span>
+                  <label>Relationship: </label>
+                  <span>{profile?.relationship}</span>
                 </div>
               </div>
               <div className="user-friends-text">User Friends</div>

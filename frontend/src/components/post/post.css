@@ -58,12 +58,15 @@
 }
 
 .post-content {
-  margin-block: 10px;
+  /* margin-block: 10px; */
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
   justify-content: center;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .post-text {
@@ -93,11 +96,13 @@
 }
 
 .empty-avatar {
-  color: gray;
+  color: rgb(203, 199, 199);
   height: 42px;
   width: 42px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: white;
+  padding: 1px;
 }
 
 .post-feelings {

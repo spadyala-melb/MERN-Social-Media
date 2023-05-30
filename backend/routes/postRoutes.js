@@ -6,6 +6,7 @@ import {
   getPost,
   likePost,
   getTimelinePosts,
+  getUserPosts,
 } from "../controllers/postController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
@@ -23,5 +24,7 @@ router.get("/:id", authMiddleware, getPost);
 router.put("/like/:id", authMiddleware, likePost);
 // get timeline posts
 router.get("/timeline/:id", authMiddleware, getTimelinePosts);
+//get posts owned by a particular user
+router.get("/user/:userId", authMiddleware, getUserPosts);
 
 export default router;
