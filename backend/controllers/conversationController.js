@@ -35,3 +35,22 @@ export const getConversation = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// get All conversations related to an user
+export const getConversations = async (req, res) => {
+  const { userId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ msg: "No such Conversation" });
+  }
+
+  try {
+    const conversations = await Conversation.find({ members: { $in: userId } });
+    if (!conversations) {
+      return res.status(400).json({ msg: "No such Conversation" });
+    }
+    res.status(200).json(conversations);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
